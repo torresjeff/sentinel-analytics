@@ -5,6 +5,17 @@ Sentiment analysis in Spanish using a bag-of-words approach.
 This script was developed by CAOBA - Center of Excelence and Appropriation of Big Data and Data Analaytics as part of their paper [CSL: A Combined Spanish lexicon - Resource for Polarity Classification and Sentiment Analysis](http://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=J41cKicqYUA=&t=1).
 
 
+## Dependencies
+* Python 3.5.2
+* pip: `$ sudo apt-get install python3-pip`
+* NLTK: `$ pip3 install nltk`
+* Numpy: `$ pip3 install numpy`
+* NLTK stopword corpus and snowball data (using Python interpreter):
+	```
+	$ python3
+	>>> import nltk
+	>>> nltk.download('popular')
+	```
 
 # References
 ```

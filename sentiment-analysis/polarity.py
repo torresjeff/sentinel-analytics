@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import sys
 import nltk, nltk.metrics
 import numpy,math,unicodedata, re
@@ -192,8 +193,8 @@ class process_list:
 
 
 
-#obj_pol_user = process_list()
-#obj_pol_user.load_list("Lexicon/1_ElhPolar.csv",type_file_enum.polarity)
+obj_pol_user = process_list()
+obj_pol_user.load_list("lexicons/CSL.csv",type_file_enum.polarity)
 
 #FORMA 1
 #print(obj_dem_user.filter_word("Bueno",type_file_enum.person_type))
@@ -204,7 +205,7 @@ class process_list:
 #print(obj_dem_user.filter_word_generic("Malo",type_file_enum.polarity))
 
 #Texto
-#print(obj_pol_user.process_text("Me gusta la nueva ley de ciencia innovacion y tecnologia, Pero algo anda mal  ? "))
+print(obj_pol_user.process_text("Me gusta la nueva ley de ciencia innovación y tecnologia, Pero algo anda mal  ? "))
 
 
 
