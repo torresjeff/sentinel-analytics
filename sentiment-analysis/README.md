@@ -42,7 +42,21 @@ This script was developed by CAOBA - Center of Excelence and Appropriation of Bi
 
 	The function returns a dictionary and should look like the following:
 	```
-	{'Label': 'Neutro', 'Average': 0.25, 'Words': [('polarity', [['gusta', 'gusta', '1']]), ('polarity', [['nueva', 'nueva', '0']]), ('polarity', [['ley', 'ley', '0']]), ('polarity', [['ciencia', 'ciencia', '0']]), ('polarity', [['innovación', 'innovacion', '1']]), ('polarity', [['tecnologia', 'tecnologia', '0']]), ('polarity', [['anda', 'anda', '0']]), ('polarity', [['mal', 'mal', '-1']])], 'Polarity': 0}
+	{
+		'Label': 'Neutro',
+		'Average': 0.25,
+		'Words': [
+			('polarity', [['gusta', 'gusta', '1']]),
+			('polarity', [['nueva', 'nueva', '0']]),
+			('polarity', [['ley', 'ley', '0']]),
+			('polarity', [['ciencia', 'ciencia', '0']]),
+			('polarity', [['innovación', 'innovacion', '1']]),
+			('polarity', [['tecnologia', 'tecnologia', '0']]),
+			('polarity', [['anda', 'anda', '0']]),
+			('polarity', [['mal', 'mal', '-1']])
+		],
+		'Polarity': 0
+	}
 
 	```
 	* `Label`: can be one of `Positivo` (positive), `Negativo` (negative) or `Neutro` (neutral). This is a string representation of the calculated polarity.
