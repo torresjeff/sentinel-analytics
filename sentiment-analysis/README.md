@@ -45,16 +45,16 @@ This script was developed by CAOBA - Center of Excelence and Appropriation of Bi
 	{'Label': 'Neutro', 'Average': 0.25, 'Words': [('polarity', [['gusta', 'gusta', '1']]), ('polarity', [['nueva', 'nueva', '0']]), ('polarity', [['ley', 'ley', '0']]), ('polarity', [['ciencia', 'ciencia', '0']]), ('polarity', [['innovación', 'innovacion', '1']]), ('polarity', [['tecnologia', 'tecnologia', '0']]), ('polarity', [['anda', 'anda', '0']]), ('polarity', [['mal', 'mal', '-1']])], 'Polarity': 0}
 
 	```
-	* Label: can be one of 'Positivo' (positive), 'Negativo' (negative) or 'Neutro' (neutral). This is a string representation of the calculated polarity
-	* Average: calculated polarity in the range [-1, 1].
+	* `Label`: can be one of `Positivo` (positive), `Negativo` (negative) or `Neutro` (neutral). This is a string representation of the calculated polarity.
+	* `Polarity`: number representation of label (1 = Positivo, -1 = Negativo, 0 = Neutro)
+	* `Average`: calculated polarity in the range [-1, 1].
 		* if `0.5 < Average <= 1`  then `Label = Positivo`
 		* else if `-1 <= Average < -0.5`  then `Label = Negativo`
 		* else `Label = Neutro`
-	* Words: an array of tuples (one tuple for every word of the sentence, excluding stopwords) with the following structure: `[('polarity', [ORIGINAL WORD, PRE-PROCESSED WORD, SCORE]), ...]`
-		* ORIGINAL WORD: the original word (including accents if any or special characters) fed into the `process_text` function
-		* PRE-PROCESSED WORD: same word with no accents or special characters
-		* SCORE: the score associated with the word as defined in the lexicon
-	* Polarity: number representation of label (1 = Positivo, -1 = Negativo, 0 = Neutro)
+	* `Words`: an array of tuples (one tuple for every word of the sentence, excluding stopwords) with the following structure: `[('polarity', [ORIGINAL WORD, PRE-PROCESSED WORD, SCORE]), ...]`
+		* `ORIGINAL WORD`: the original word (including accents if any or special characters) fed into the `process_text` function
+		* `PRE-PROCESSED WORD`: same word with no accents or special characters
+		* `SCORE`: the score associated with the word as defined in the lexicon
 
 
 
