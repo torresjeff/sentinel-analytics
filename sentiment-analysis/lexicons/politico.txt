@@ -1636,3 +1636,5 @@ voto	0
 voy	0				
 vuelva	0				
 vuelve	0				
+carcel	-1				
+muerto	-1				

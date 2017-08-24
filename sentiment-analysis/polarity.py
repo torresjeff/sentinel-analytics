@@ -194,7 +194,7 @@ class process_list:
 
 
 obj_pol_user = process_list()
-obj_pol_user.load_list("lexicons/CSL.csv",type_file_enum.polarity)
+obj_pol_user.load_list("lexicons/CSL_politico.csv",type_file_enum.polarity)
 
 #FORMA 1
 #print(obj_dem_user.filter_word("Bueno",type_file_enum.person_type))
@@ -206,6 +206,9 @@ obj_pol_user.load_list("lexicons/CSL.csv",type_file_enum.polarity)
 
 #Texto
 print(obj_pol_user.process_text("Me gusta la nueva ley de ciencia innovación y tecnologia, Pero algo anda mal  ? "))
+print(obj_pol_user.process_text("Así lo afirmó Jaime Velilla Castrillón, representante del Departamento en esta Junta ante las revelaciones de este diario sobre presunta corrupción. Conozca más detalles de su respuesta: A la Junta de Plaza Mayor no le hablaron con la verdad Gobernación de Antioquia"))
+print(obj_pol_user.process_text("Jajajajaja valiente justicia alcahueta, a todos los políticos corruptos les están dando casa por cárcel, que vergüenza. Con razón tantos corruptos, saben que la justicia es laxa entonces llegan a un acuerdo se declaran culpables y les dan una mínima pena en su casa.👎👎👎👎👎"))
+print(obj_pol_user.process_text("Más años de cárcel y menos casa por cárcel para políticos corruptos y ladrones de cuello blanco."))
 
 
 
