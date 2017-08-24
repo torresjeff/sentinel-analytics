@@ -2622,7 +2622,7 @@ pertenece; -1
 trenes; -1
 creces; 1
 corrupcion; -1
-corruptos; -1
+corruptos; 0
 lat; 1
 bicicleta; 0
 incorporar; 0
@@ -4752,7 +4752,7 @@ relajado; 1
 llega; 0
 ganas; 1
 colapsada; -1
-pena; -1
+pena; 0
 letargo; -1
 video; 0
 pisando; 1
