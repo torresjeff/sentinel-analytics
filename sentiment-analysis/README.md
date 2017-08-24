@@ -60,7 +60,6 @@ This script was developed by CAOBA - Center of Excelence and Appropriation of Bi
 
 	```
 	* `Label`: can be one of `Positivo` (positive), `Negativo` (negative) or `Neutro` (neutral). This is a string representation of the calculated polarity.
-	* `Polarity`: number representation of label (1 = Positivo, -1 = Negativo, 0 = Neutro)
 	* `Average`: calculated polarity in the range [-1, 1].
 		* if `0.5 < Average <= 1`  then `Label = Positivo`
 		* else if `-1 <= Average < -0.5`  then `Label = Negativo`
@@ -69,6 +68,7 @@ This script was developed by CAOBA - Center of Excelence and Appropriation of Bi
 		* `ORIGINAL WORD`: the original word (including accents if any or special characters) fed into the `process_text` function
 		* `PRE-PROCESSED WORD`: same word with no accents or special characters
 		* `SCORE`: the score associated with the word as defined in the lexicon
+	* `Polarity`: number representation of label (1 = Positivo, -1 = Negativo, 0 = Neutro)
 
 
 
