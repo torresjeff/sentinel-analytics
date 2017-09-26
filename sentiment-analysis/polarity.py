@@ -6,7 +6,7 @@ from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 import csv
 from enum import Enum
-
+from optparse import OptionParser
 
 
 class type_file_enum(Enum):
@@ -27,11 +27,11 @@ class process_list:
         #Debug Print Message
         self.debug = debug
 
-    def load_list(self, _file_type, type_file_parm):
+    def load_list(self, type_file_parm, _file_type="lexicons/politico.csv", separator="\t"):
 
         if (type_file_parm is type_file_enum.polarity):
             with open(_file_type, newline='') as csvFileBow:
-                reader = csv.reader(csvFileBow, delimiter=';')
+                reader = csv.reader(csvFileBow, delimiter=separator)
                 for row in reader:
                     new_row = [row[0], self.delete_accents(row[0]), self.delete_special_characters(self.delete_accents(row[0])),
                          self._spanis_stemmer.stem(self.delete_accents(self.delete_accents(row[0]))), row[1]]
@@ -192,9 +192,24 @@ class process_list:
         return return_data
 
 
+if __name__ == '__main__':
+    parser = OptionParser()
+    parser.add_option("-f", "--file", dest="file", default="lexicons/politico.csv", help="name of the file with the lexicons")
+    parser.add_option("-s", "--separator", dest="sep", default="\t", help="specify separator for the file with the lexicons")
+    (options, args) = parser.parse_args()
+    
+    obj_pol_user = process_list()
+    obj_pol_user.load_list(type_file_enum.polarity, options.file, options.sep)
 
-obj_pol_user = process_list()
-obj_pol_user.load_list("lexicons/CSL_politico.csv",type_file_enum.polarity)
+    #Texto
+    print(obj_pol_user.process_text("Me gusta la nueva ley de ciencia innovación y tecnologia, Pero algo anda mal  ? "))
+    print(obj_pol_user.process_text("Así lo afirmó Jaime Velilla Castrillón, representante del Departamento en esta Junta ante las revelaciones de este diario sobre presunta corrupción. Conozca más detalles de su respuesta: A la Junta de Plaza Mayor no le hablaron con la verdad Gobernación de Antioquia"))
+    print(obj_pol_user.process_text("Jajajajaja valiente justicia alcahueta, a todos los políticos corruptos les están dando casa por cárcel, que vergüenza. Con razón tantos corruptos, saben que la justicia es laxa entonces llegan a un acuerdo se declaran culpables y les dan una mínima pena en su casa.👎👎👎👎👎"))
+    print(obj_pol_user.process_text("Más años de cárcel y menos casa por cárcel para políticos corruptos y ladrones de cuello blanco."))
+    print(obj_pol_user.process_text("Álvaro Uribe es el mejor presidente de todos los tiempos."))
+    print(obj_pol_user.process_text("Álvaro Uribe es el peor presidente de todos los tiempos."))
+    print(obj_pol_user.process_text("Álvaro Uribe es el unico presidente que se atreve a decir la verdad"))
+    print(obj_pol_user.process_text("Álvaro Uribe lo unico que sabe decir son mentiras"))
 
 #FORMA 1
 #print(obj_dem_user.filter_word("Bueno",type_file_enum.person_type))
@@ -203,12 +218,3 @@ obj_pol_user.load_list("lexicons/CSL_politico.csv",type_file_enum.polarity)
 #FORMA 2
 #print(obj_dem_user.filter_word_generic("Bueno",type_file_enum.polarity))
 #print(obj_dem_user.filter_word_generic("Malo",type_file_enum.polarity))
-
-#Texto
-print(obj_pol_user.process_text("Me gusta la nueva ley de ciencia innovación y tecnologia, Pero algo anda mal  ? "))
-print(obj_pol_user.process_text("Así lo afirmó Jaime Velilla Castrillón, representante del Departamento en esta Junta ante las revelaciones de este diario sobre presunta corrupción. Conozca más detalles de su respuesta: A la Junta de Plaza Mayor no le hablaron con la verdad Gobernación de Antioquia"))
-print(obj_pol_user.process_text("Jajajajaja valiente justicia alcahueta, a todos los políticos corruptos les están dando casa por cárcel, que vergüenza. Con razón tantos corruptos, saben que la justicia es laxa entonces llegan a un acuerdo se declaran culpables y les dan una mínima pena en su casa.👎👎👎👎👎"))
-print(obj_pol_user.process_text("Más años de cárcel y menos casa por cárcel para políticos corruptos y ladrones de cuello blanco."))
-
-
-

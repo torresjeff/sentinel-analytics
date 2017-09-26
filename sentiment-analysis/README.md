@@ -32,7 +32,8 @@ This script was developed by CAOBA - Center of Excelence and Appropriation of Bi
 
 	Note the scale must be from -1 to 1.
 
-	By default the script uses the `CSL_politico.csv` lexicon. An option to specify the lexicon through command line will be available in a future update. In the mean time, specify the lexicon in the script as an argument to the function `load_list`. Eg: `obj_pol_user.load_list("lexicons/mylexicon.csv", type_file_enum.polarity)`.
+	By default the script uses the `politico.csv` lexicon. If you wish to specify the lexicon through command line then run: `$ ./polarity -f path/to/lexicon`.
+	The default delimiter is `\t`. If you with to specify a custom delimiter then run: `$ ./polarity -s ";"`
 * After setting your lexicon (or using the default one), calculate the polarity for a document using the `process_text` function, like so:
 	```
 	obj_pol_user = process_list()
