@@ -104,12 +104,12 @@ class process_list:
                 #print("Polarity word =", polarity_word)
                 #print(polarity_word)
                 if polarity_word[1] != 0:
-                    #counter = counter + 1
+                    counter = counter + 1
                     if int(polarity_word[1][0][2]) < 0:
-                        counter = counter + 1
+                        #counter = counter + 1
                         neg = neg - 1
                     elif int(polarity_word[1][0][2]) > 0:
-                        counter = counter + 1
+                        #counter = counter + 1
                         pos = pos + 1
                     result_words.append(polarity_word)
                     if self.debug: print(polarity_word)
@@ -141,7 +141,7 @@ class process_list:
             
             if polarity_value == 1:
                 polarity_label = "Positivo"
-            elif polarity_average == -1:
+            elif polarity_value == -1:
                 polarity_label = "Negativo"
             else:
                 polarity_label = "Neutro"

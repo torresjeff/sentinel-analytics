@@ -70,7 +70,10 @@ def get_comments_for(entity, match_exact=False):
     else:
         regex = {'$regex': '.*' + entity + '.*', '$options': 'i'}
     
-    comments_for_entity = comments.find({'message': regex})
+    comments_for_entity = comments.find({ '$and': [
+        {'message': regex},
+        {'polarity': {'$exists': False}}
+    ]})
 
     comments_for_entity = list(comments_for_entity)
     comments_for_entity = [Comment(c) for c in comments_for_entity]
@@ -84,11 +87,12 @@ def get_posts_for(entity, match_exact=False):
     else:
         regex = {'$regex': '.*' + entity + '.*', '$options': 'i'}
 
-    posts_for_entity = posts.find({ '$or': [
-        {'name': regex},
-        {'description': regex},
-        {'message': regex}
-    ]})
+    posts_for_entity = posts.find({'$or': [
+            {'name': regex},
+            {'description': regex},
+            {'message': regex}
+        ]}
+    )
 
     posts_for_entity = list(posts_for_entity)
     posts_for_entity = [Post(p) for p in posts_for_entity]
@@ -104,6 +108,31 @@ def get_reactions_for(entity, match_exact=False):
 
     reactions_for_entity = [Reaction(r) for r in reactions_for_entity]
     return reactions_for_entity
+
+def update_documents_with_polarity():
+    a = 0
+
+def get_posts_comments_reactions_set(knowledge_base):
+    posts_corrupcion = set()
+    comments_corrupcion = set()
+    reactions_corrupcion = set()
+    
+    for lider, match_exact in lideres_opinion.items():
+        print("######", lider, match_exact, "######")
+        posts_for_entity = get_posts_for(lider, match_exact)
+        comments_for_entity = get_comments_for(lider, match_exact)
+        reactions_for_entity = list(get_reactions_for(lider, match_exact))
+        #print(posts_for_entity)
+        if posts_for_entity:
+            posts_corrupcion.update(posts_for_entity)
+        
+        if comments_for_entity:
+            comments_corrupcion.update(comments_for_entity)
+        
+        if reactions_for_entity:
+            reactions_corrupcion.update(reactions_for_entity)
+        
+    return (posts_corrupcion, comments_corrupcion, reactions_corrupcion)
 
 if __name__ == '__main__':
 
@@ -126,38 +155,30 @@ if __name__ == '__main__':
     instituciones = read_knowledge_base('../base-conocimiento/instituciones.txt')
     lideres_opinion = read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
     partidos_politicos = read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
-    #print(analyzer.process_text("Me gusta la nueva ley de ciencia innovación y tecnologia, Pero algo anda mal  ? "))
-    #print(analyzer.process_text("Así lo afirmó Jaime Velilla Castrillón, representante del Departamento en esta Junta ante las revelaciones de este diario sobre presunta corrupción. Conozca más detalles de su respuesta: A la Junta de Plaza Mayor no le hablaron con la verdad Gobernación de Antioquia"))
-    #print(analyzer.process_text("Jajajajaja valiente justicia alcahueta, a todos los políticos corruptos les están dando casa por cárcel, que vergüenza. Con razón tantos corruptos, saben que la justicia es laxa entonces llegan a un acuerdo se declaran culpables y les dan una mínima pena en su casa.👎👎👎👎👎"))
-    #print(analyzer.process_text("Más años de cárcel y menos casa por cárcel para políticos corruptos y ladrones de cuello blanco."))
-    #print(analyzer.process_text("Álvaro Uribe es el mejor presidente de todos los tiempos."))
-    #print(analyzer.process_text("Álvaro Uribe es el peor presidente de todos los tiempos."))
-    #print(analyzer.process_text("Álvaro Uribe es el unico presidente que se atreve a decir la verdad"))
-    #print(analyzer.process_text("Álvaro Uribe lo unico que sabe decir son mentiras"))
-    #print(analyzer.process_text("Malditos perros pena de muerte que mas queremos ver Juan Orlando cuando la pena de muerte ya esto se salio de las manos"))
 
-    posts_corrupcion = set()
-    comments_corrupcion = set()
-    reactions_corrupcion = set()
-
-    for lider, match_exact in instituciones.items():
-        print("######", lider, match_exact, "######")
-        posts_for_entity = get_posts_for(lider, match_exact)
-        comments_for_entity = get_comments_for(lider)
-        reactions_for_entity = list(get_reactions_for(lider, match_exact))
-        #print(posts_for_entity)
-        if posts_for_entity:
-            posts_corrupcion.update(posts_for_entity)
-        
-        if comments_for_entity:
-            comments_corrupcion.update(comments_for_entity)
-        
-        if reactions_for_entity:
-            reactions_corrupcion.update(reactions_for_entity)
-        
+    """
+    print(analyzer.process_text("Me gusta la nueva ley de ciencia innovación y tecnologia, Pero algo anda mal  ? "))
+    print(analyzer.process_text("Así lo afirmó Jaime Velilla Castrillón, representante del Departamento en esta Junta ante las revelaciones de este diario sobre presunta corrupción. Conozca más detalles de su respuesta: A la Junta de Plaza Mayor no le hablaron con la verdad Gobernación de Antioquia"))
+    print(analyzer.process_text("Jajajajaja valiente justicia alcahueta, a todos los políticos corruptos les están dando casa por cárcel, que vergüenza. Con razón tantos corruptos, saben que la justicia es laxa entonces llegan a un acuerdo se declaran culpables y les dan una mínima pena en su casa.👎👎👎👎👎"))
+    print(analyzer.process_text("Más años de cárcel y menos casa por cárcel para políticos corruptos y ladrones de cuello blanco."))
+    print(analyzer.process_text("Álvaro Uribe es el mejor presidente de todos los tiempos."))
+    print(analyzer.process_text("Álvaro Uribe es el peor presidente de todos los tiempos."))
+    print(analyzer.process_text("Álvaro Uribe es el unico presidente que se atreve a decir la verdad"))
+    print(analyzer.process_text("Álvaro Uribe lo unico que sabe decir son mentiras"))
+    print(analyzer.process_text("Malditos perros pena de muerte que mas queremos ver Juan Orlando cuando la pena de muerte ya esto se salio de las manos"))
+    """
+    
+    (posts_corrupcion, comments_corrupcion, reactions_corrupcion) = get_posts_comments_reactions_set(lideres_opinion)
 
     for c in comments_corrupcion:
-        print(c.comment['_id'], "=>", analyzer.process_text(c.comment['message']))
+        updated_comment = dict(c.comment)
+        updated_comment['polarity'] = analyzer.process_text(c.comment['message'])['Polarity']
+        del updated_comment['_id']
+        #c.comment['polarity'] = analyzer.process_text(c.comment['message'])['Polarity']
+        print(c.comment['_id'], "=>", updated_comment)
+        comments.update(c.comment, updated_comment, upsert=True)
+    
+    
         
         #for p in posts_corrupcion:
             #print(p.post)
