@@ -1,16 +1,16 @@
-María Jimena Duzán
-Daniel Coronell
-Jorge Robledo 
-Juanita León
-Claudia López
-Gonzalo Guillén
-Antonio Caballero
-Yolanda Ruiz
-José Manuel Acevedo
-Darcy Quinn
-María Isabel Rueda
-Vladdo
-Daniel Samper Ospina
-Salud Hernández
-Felipe Zuleta Lleras
-Matador
+Mar[íi]a Jimena Duz[áa]n,false
+Daniel Coronell,false
+Jorge Robledo,false
+Juanita Le[óo]n,false
+Claudia L[óo]pez,false
+Gonzalo Guill[ée]n,false
+Antonio Caballero,false
+Yolanda Ruiz,false
+Jos[ée] Manuel Acevedo,false
+Darcy Quinn,false
+Mar[íi]a Isabel Rueda,false
+Vladdo,false
+Daniel Samper,false
+Salud Hern[áa]ndez,false
+Felipe Zuleta Lleras,false
+Matador,false

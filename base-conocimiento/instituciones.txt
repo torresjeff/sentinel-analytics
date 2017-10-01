@@ -1,15 +1,20 @@
-Transparencia por Colombia
-Centro de Estrategias Anticorrupción CEA
-Pacto Global
-Naciones Unidas
-Secretaría de Transparencia
-SIC
-Superintendencia de Industria y Comercio
-Policía Nacional
-Congreso de la Republica
-Superintendencia Financiera
-Supersociedades
-Fiscalía
-Procuraduría
-Contraloría
-CNE
+Transparencia por Colombia,false
+Centro de Estrategias Anticorrupci[óo]n,false
+Centro de Estrategias Anticorrupci[óo]n CEA,false
+CEA,true
+Pacto Global,false
+Naciones Unidas,false
+ONU,true
+Secretar[íi]a de Transparencia,false
+SIC,true
+Superintendencia de Industria y Comercio,false
+Polic[íi]a Nacional,false
+Congreso de la Rep[úu]blica,false
+Superintendencia Financiera,false
+Supersociedades,false
+Superintendencia de Sociedades, false
+Fiscal[íi]a,false
+Procuradur[íi]a,false
+Contralor[íi]a,false
+Consejo Nacional Electoral,false
+CNE,true

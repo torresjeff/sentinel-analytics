@@ -1,18 +1,20 @@
-Odebrecht
-Reficar
-Llanopetrol
-Marketmedios
-FF. MM. de Cartagena
-fiscal anticorrupción
-Secretaría de Seguridad de Medellín
-Saludcoop
-Cartel de la Hemofilia
-Fondo Premium
-Interbolsa
-Inassa
-Triple A
-Estraval
-Juegos Nacionales del Meta
-Juegos Bolivarianos 2017
-Cartel de la Seguridad Privada
-Juegos Deportivos Nacionales
+Odebrecht,false
+Reficar,false
+Llanopetrol,false
+Marketmedios,false
+FF. MM. de Cartagena,false
+FF. MM.,false
+FF.MM.,false
+fiscal anticorrupci[óo]n,false
+Secretar[íi]a de Seguridad de Medell[íi]n,false
+Saludcoop,false
+Cartel de la Hemofilia,false
+Fondo Premium,false
+Interbolsa,false
+Inassa,false
+Triple A,false
+Estraval,false
+Juegos Nacionales del Meta,false
+Juegos Bolivarianos 2017,false
+Cartel de la Seguridad Privada,false
+Juegos Deportivos Nacionales,false

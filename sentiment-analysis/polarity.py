@@ -101,6 +101,7 @@ class process_list:
 
             for word in words_text:
                 polarity_word = self.filter_word_generic(word, type_file_enum.polarity)
+                print("Polarity word =", polarity_word)
                 #print(polarity_word)
                 if polarity_word[1] != 0:
                     counter = counter + 1
@@ -121,12 +122,15 @@ class process_list:
             else:
                 polarity_average = 0
 
-            polarity_value = round(polarity_average)
+            #polarity_value = round(polarity_average)
+            polarity_value = 0
 
-            if polarity_value == 1:
+            if polarity_average >= 0.5:
                 polarity_label = "Positivo"
-            elif polarity_value == -1:
+                polarity_value = 1
+            elif polarity_average <= -0.5:
                 polarity_label = "Negativo"
+                polarity_value = -1
             else:
                 polarity_label = "Neutro"
         except:
@@ -163,13 +167,13 @@ class process_list:
                     if (len(matching) == 0):
                         return response_text["error"], 0
                     else:
-                        return response_text["successful"], matching
+                        return response_text["successful"], [matching[0]]
                 else:
-                    return response_text["successful"], matching
+                    return response_text["successful"], [matching[0]]
             else:
-                return response_text["successful"], matching
+                return response_text["successful"], [matching[0]]
         else:
-            return response_text["successful"], matching
+            return response_text["successful"], [matching[0]]
 
     #Eliminar las Tildes
     def delete_accents(self,_word):

@@ -1,17 +1,17 @@
-soborno
-extorsión
-robo
-hurto
-cohecho
-ilegalidad
-enriquecimiento ilícito
-fraude
-falsedad
-ladrones
-corruptos
-torcidos
-serrucho
-sacar tajada
-ilícito
-desfalco
-mermelada
+soborno,false
+extorsi[óo]n,false
+robo,false
+hurto,false
+cohecho,false
+ilegalidad,false
+enriquecimiento il[íi]cito,false
+fraude,false
+falsedad,false
+ladrones,false
+corruptos,false
+torcidos,false
+serrucho,false
+sacar tajada,false
+il[íi]cito,false
+desfalco,false
+mermelada,false
