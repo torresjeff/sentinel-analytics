@@ -1,16 +1,16 @@
-Mar[íi]a Jimena Duz[áa]n,false,maria-duzan
+Mar[íìi]a Jimena Duz[áàa]n,false,maria-duzan
 Daniel Coronell,false,daniel-coronell
 Jorge Robledo,false,jorge-robledo
-Juanita Le[óo]n,false,juanita-leon
-Claudia L[óo]pez,false,claudia-lopez
-Gonzalo Guill[ée]n,false,gonzalo-guillen
+Juanita Le[óòo]n,false,juanita-leon
+Claudia L[óòo]pez,false,claudia-lopez
+Gonzalo Guill[éèe]n,false,gonzalo-guillen
 Antonio Caballero,false,antonio-caballero
 Yolanda Ruiz,false,yolanda-ruiz
-Jos[ée] Manuel Acevedo,false,jose-manuel-acevedo
+Jos[éèe] Manuel Acevedo,false,jose-manuel-acevedo
 Darcy Quinn,false,darcy-quinn
-Mar[íi]a Isabel Rueda,false,maria-isabel-rueda
+Mar[íìi]a Isabel Rueda,false,maria-isabel-rueda
 Vladdo,false,vladdo
 Daniel Samper,false,daniel-samper
-Salud Hern[áa]ndez,false,salud-hernandez
+Salud Hern[áàa]ndez,false,salud-hernandez
 Felipe Zuleta Lleras,false,felipe-zuleta-lleras
 Matador,false,matador

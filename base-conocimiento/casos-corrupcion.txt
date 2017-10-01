@@ -5,8 +5,8 @@ Marketmedios,false,marketmedios
 FF. MM. de Cartagena,false,ffmm
 FF. MM.,false,ffmm
 FF.MM.,false,ffmm
-fiscal anticorrupci[óo]n,false,fiscal-anticorrupcion
-Secretar[íi]a de Seguridad de Medell[íi]n,false,secretia-seguridad-medellin
+fiscal anticorrupci[óòo]n,false,fiscal-anticorrupcion
+Secretar[íìi]a de Seguridad de Medell[íìi]n,false,secretia-seguridad-medellin
 Saludcoop,false,saludcoop
 Cartel de la Hemofilia,false,cartel-hemofilia
 Fondo Premium,false,interbolsa
