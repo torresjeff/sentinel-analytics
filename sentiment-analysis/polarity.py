@@ -101,7 +101,7 @@ class process_list:
 
             for word in words_text:
                 polarity_word = self.filter_word_generic(word, type_file_enum.polarity)
-                print("Polarity word =", polarity_word)
+                #print("Polarity word =", polarity_word)
                 #print(polarity_word)
                 if polarity_word[1] != 0:
                     counter = counter + 1
@@ -113,22 +113,25 @@ class process_list:
                     if self.debug: print(polarity_word)
 
             if abs(neg) > pos:
-                value = neg
+                #value = neg
+                value = pos - abs(neg)
             else:
-                value = pos
+                #value = pos
+                value = abs(neg) - pos
 
             if counter != 0:
-                polarity_average = value / counter
+                #polarity_average = value / counter
+                polarity_average = value
             else:
                 polarity_average = 0
 
             #polarity_value = round(polarity_average)
             polarity_value = 0
 
-            if polarity_average >= 0.5:
+            if polarity_average >= 2:
                 polarity_label = "Positivo"
                 polarity_value = 1
-            elif polarity_average <= -0.5:
+            elif polarity_average <= -2:
                 polarity_label = "Negativo"
                 polarity_value = -1
             else:
