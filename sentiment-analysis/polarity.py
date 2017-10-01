@@ -104,36 +104,45 @@ class process_list:
                 #print("Polarity word =", polarity_word)
                 #print(polarity_word)
                 if polarity_word[1] != 0:
-                    counter = counter + 1
+                    #counter = counter + 1
                     if int(polarity_word[1][0][2]) < 0:
+                        counter = counter + 1
                         neg = neg - 1
                     elif int(polarity_word[1][0][2]) > 0:
+                        counter = counter + 1
                         pos = pos + 1
                     result_words.append(polarity_word)
                     if self.debug: print(polarity_word)
 
             if abs(neg) > pos:
-                #value = neg
-                value = pos - abs(neg)
+                value = neg
+                #value = pos - abs(neg)
             else:
-                #value = pos
-                value = abs(neg) - pos
+                value = pos
+                #value = abs(neg) - pos
 
             if counter != 0:
-                #polarity_average = value / counter
-                polarity_average = value
+                polarity_average = value / counter
+               # polarity_average = value
             else:
                 polarity_average = 0
 
-            #polarity_value = round(polarity_average)
-            polarity_value = 0
+            polarity_value = round(polarity_average)
+            #polarity_value = 0
 
-            if polarity_average >= 2:
+            #if polarity_average >= 2:
+                #polarity_label = "Positivo"
+                #polarity_value = 1
+            #elif polarity_average <= -2:
+                #polarity_label = "Negativo"
+                #polarity_value = -1
+            #else:
+                #polarity_label = "Neutro"
+            
+            if polarity_value == 1:
                 polarity_label = "Positivo"
-                polarity_value = 1
-            elif polarity_average <= -2:
+            elif polarity_average == -1:
                 polarity_label = "Negativo"
-                polarity_value = -1
             else:
                 polarity_label = "Neutro"
         except:

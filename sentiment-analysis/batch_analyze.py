@@ -140,7 +140,7 @@ if __name__ == '__main__':
     comments_corrupcion = set()
     reactions_corrupcion = set()
 
-    for lider, match_exact in palabras_corrupcion.items():
+    for lider, match_exact in instituciones.items():
         print("######", lider, match_exact, "######")
         posts_for_entity = get_posts_for(lider, match_exact)
         comments_for_entity = get_comments_for(lider)
