@@ -5,6 +5,7 @@ from polarity import process_list as SentimentAnalysis
 from optparse import OptionParser
 import pymongo
 import csv
+import datetime
 
 client = pymongo.MongoClient("localhost", 27017)
 db = client.facebook # use the facebook database (automatically created if it doesn't exist)
@@ -62,7 +63,7 @@ def read_knowledge_base(file):
     return words
     
 
-def get_comments_for(entity, match_exact=False):
+def get_comments_for(entity, match_exact=False, with_polarity=False):
     global comments
     regex = {}
     if match_exact:
@@ -70,10 +71,18 @@ def get_comments_for(entity, match_exact=False):
     else:
         regex = {'$regex': '.*' + entity + '.*', '$options': 'i'}
     
-    comments_for_entity = comments.find({ '$and': [
-        {'message': regex},
-        {'polarity': {'$exists': False}}
-    ]})
+    comments_for_entity = {}
+
+    if with_polarity:
+        comments_for_entity = comments.find({ '$and': [
+            {'message': regex},
+            {'polarity': {'$exists': True}}
+        ]})
+    else:
+        comments_for_entity = comments.find({ '$and': [
+            {'message': regex},
+            {'polarity': {'$exists': False}}
+        ]})
 
     comments_for_entity = list(comments_for_entity)
     comments_for_entity = [Comment(c) for c in comments_for_entity]
@@ -109,30 +118,45 @@ def get_reactions_for(entity, match_exact=False):
     reactions_for_entity = [Reaction(r) for r in reactions_for_entity]
     return reactions_for_entity
 
-def update_documents_with_polarity():
-    a = 0
+def update_comments_with_polarity(comments_set):
+    for c in comments_set:
+        updated_comment = dict(c.comment)
+        updated_comment['polarity'] = analyzer.process_text(c.comment['message'])['Polarity']
+        del updated_comment['_id']
+        
+        print(c.comment['_id'], "=>", updated_comment)
+        comments.update(c.comment, updated_comment, upsert=True)
 
 def get_posts_comments_reactions_set(knowledge_base):
-    posts_corrupcion = set()
-    comments_corrupcion = set()
-    reactions_corrupcion = set()
+    posts_set = set()
+    comments_set = set()
+    reactions_set = set()
     
-    for lider, match_exact in lideres_opinion.items():
-        print("######", lider, match_exact, "######")
-        posts_for_entity = get_posts_for(lider, match_exact)
-        comments_for_entity = get_comments_for(lider, match_exact)
-        reactions_for_entity = list(get_reactions_for(lider, match_exact))
+    for key, match_exact in knowledge_base.items():
+        print("######", key, match_exact, "######")
+        posts_for_entity = get_posts_for(key, match_exact)
+        comments_for_entity = get_comments_for(key, match_exact)
+        reactions_for_entity = list(get_reactions_for(key, match_exact))
+        #print(reactions_for_entity)
         #print(posts_for_entity)
         if posts_for_entity:
-            posts_corrupcion.update(posts_for_entity)
+            posts_set.update(posts_for_entity)
         
         if comments_for_entity:
-            comments_corrupcion.update(comments_for_entity)
+            comments_set.update(comments_for_entity)
         
         if reactions_for_entity:
-            reactions_corrupcion.update(reactions_for_entity)
+            reactions_set.update(reactions_for_entity)
         
-    return (posts_corrupcion, comments_corrupcion, reactions_corrupcion)
+    return (posts_set, comments_set, reactions_set)
+
+def write_comments_to_file(name):
+    file = '../results/comments/' + name + '-' + datetime.datetime.today().strftime('%Y-%m-%d') + '.csv'
+    #comments_set = get_comments_for(name, )
+    with open(file, 'w+', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=',')
+        for c in comments:
+            csvwriter.writerow([c.comment['_id'], c.comment['message'], c.comment['like_count'], c.comment['polarity'], c.comment['created_time']])
 
 if __name__ == '__main__':
 
@@ -168,16 +192,11 @@ if __name__ == '__main__':
     print(analyzer.process_text("Malditos perros pena de muerte que mas queremos ver Juan Orlando cuando la pena de muerte ya esto se salio de las manos"))
     """
     
-    (posts_corrupcion, comments_corrupcion, reactions_corrupcion) = get_posts_comments_reactions_set(lideres_opinion)
+    (posts_set, comments_set, reactions_set) = get_posts_comments_reactions_set(lideres_opinion)
 
-    for c in comments_corrupcion:
-        updated_comment = dict(c.comment)
-        updated_comment['polarity'] = analyzer.process_text(c.comment['message'])['Polarity']
-        del updated_comment['_id']
-        #c.comment['polarity'] = analyzer.process_text(c.comment['message'])['Polarity']
-        print(c.comment['_id'], "=>", updated_comment)
-        comments.update(c.comment, updated_comment, upsert=True)
+    update_comments_with_polarity(comments_set)
     
+    write_comments_to_file("claudia-lopez")
     
         
         #for p in posts_corrupcion:

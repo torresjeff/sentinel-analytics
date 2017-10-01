@@ -1,20 +1,20 @@
-Odebrecht,false
-Reficar,false
-Llanopetrol,false
-Marketmedios,false
-FF. MM. de Cartagena,false
-FF. MM.,false
-FF.MM.,false
-fiscal anticorrupci[óo]n,false
-Secretar[íi]a de Seguridad de Medell[íi]n,false
-Saludcoop,false
-Cartel de la Hemofilia,false
-Fondo Premium,false
-Interbolsa,false
-Inassa,false
-Triple A,false
-Estraval,false
-Juegos Nacionales del Meta,false
-Juegos Bolivarianos 2017,false
-Cartel de la Seguridad Privada,false
-Juegos Deportivos Nacionales,false
+Odebrecht,false,odebrecht
+Reficar,false,reficar
+Llanopetrol,false,llanopetrol
+Marketmedios,false,marketmedios
+FF. MM. de Cartagena,false,ffmm
+FF. MM.,false,ffmm
+FF.MM.,false,ffmm
+fiscal anticorrupci[óo]n,false,fiscal-anticorrupcion
+Secretar[íi]a de Seguridad de Medell[íi]n,false,secretia-seguridad-medellin
+Saludcoop,false,saludcoop
+Cartel de la Hemofilia,false,cartel-hemofilia
+Fondo Premium,false,interbolsa
+Interbolsa,false,interbolsa
+Inassa,false,inassa
+Triple A,false,inassa
+Estraval,false,estraval
+Juegos Nacionales del Meta,false,juegos-nacionales-meta
+Juegos Bolivarianos 2017,false,juegos-bolivarianos
+Cartel de la Seguridad Privada,false,cartel-seguridad-privada
+Juegos Deportivos Nacionales,false,juegos-deportivos-nacionales

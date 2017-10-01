@@ -1,3 +1,3 @@
-Claudia L[óo]pez,false
-Daniel Samper,false
-Matador,false
+Claudia L[óo]pez,false,claudia-lopez
+Daniel Samper,false,daniel-samper
+Matador,false,matador
