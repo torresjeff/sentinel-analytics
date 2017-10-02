@@ -1,6 +1,7 @@
-Claudia L[óòo]pez,false,claudia-lopez
-Daniel Samper,false,daniel-samper
-Matador,false,matador
-[Áàa]lvaro Uribe,false,alvaro-uribe
-Uribe,false,alvaro-uribe
-Vladdo,false,vladdo
+Claudia L[óòo]pez,false,claudia-lopez,Claudia López
+Daniel Samper,false,daniel-samper,Daniel Samper
+Matador,false,matador,'Matador'
+[Áàa]lvaro Uribe,false,alvaro-uribe,Álvaro Uribe
+Uribe,false,alvaro-uribe, Álvaro Uribe
+Vladdo,false,vladdo,'Vladdo'
+Salud Hern[áàa]ndez,false,salud-hernandez,Salud Hernández

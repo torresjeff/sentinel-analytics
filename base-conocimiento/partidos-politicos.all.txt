@@ -1,9 +1,11 @@
-Partido de la U,false
-Centro Democrático,false
-Liberal,false
-Conservador,false
-Cambio Radical,false
-Polo,false
-Opción Ciudadana,false
-Partido Verde,false
-Mira,true
+Partido de la U,false,u,Partido de la U
+Centro Democr[áàa]tico,false,cd,Centro Democrático
+Partido Liberal,false,liberal,Partido Liberal
+Liberal,false,liberal,Partido Liberal
+Partido Conservador,false,conservador,Partido Conservador
+Conservador,false,conservador,Partido Conservador
+Cambio Radical,false,radical,Cambio Radical
+Polo,false,polo,Polo
+Opci[óòo]n Ciudadana,false,oc,Opción Ciudadana
+Partido Verde,false,verde,Partido Verde
+Mira,true,mira,Mira

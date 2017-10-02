@@ -1,17 +1,17 @@
-soborno,false,corrupcion
-extorsi[óo]n,false,corrupcion
-robo,false,corrupcion
-hurto,false,corrupcion
-cohecho,false,corrupcion
-ilegalidad,false,corrupcion
-enriquecimiento il[íi]cito,false,corrupcion
-fraude,false,corrupcion
-falsedad,false,corrupcion
-ladrones,false,corrupcion
-corruptos,false,corrupcion
-torcidos,false,corrupcion
-serrucho,false,corrupcion
-sacar tajada,false,corrupcion
-il[íi]cito,false,corrupcion
-desfalco,false,corrupcion
-mermelada,false,corrupcion
+soborno,false,corrupcion,Soborno
+extorsi[óòo]n,false,corrupcion,Extorsión
+robo,false,corrupcion,Robo
+hurto,false,corrupcion,Hurto
+cohecho,false,corrupcion,Cohecho
+ilegalidad,false,corrupcion,Ilegalidad
+enriquecimiento il[íìi]cito,false,corrupcion,Enriquecimiento ilícito
+fraude,false,corrupcion,Fraude
+falsedad,false,corrupcion,Falsedad
+ladr[óòo]n,false,corrupcion,Ladrones
+corruptos,false,corrupcion,Corruptos
+torcidos,false,corrupcion,Torcidos
+serrucho,false,corrupcion,Serrucho
+sacar tajada,false,corrupcion,'Sacar tajada'
+il[íìi]cito,false,corrupcion,Ilícito
+desfalco,false,corrupcion,Desfalco
+mermelada,false,corrupcion,Mermelada

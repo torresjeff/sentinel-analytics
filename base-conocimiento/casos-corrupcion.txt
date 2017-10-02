@@ -1,20 +1,21 @@
-Odebrecht,false,odebrecht
-Reficar,false,reficar
-Llanopetrol,false,llanopetrol
-Marketmedios,false,marketmedios
-FF. MM. de Cartagena,false,ffmm
-FF. MM.,false,ffmm
-FF.MM.,false,ffmm
-fiscal anticorrupci[óòo]n,false,fiscal-anticorrupcion
-Secretar[íìi]a de Seguridad de Medell[íìi]n,false,secretia-seguridad-medellin
-Saludcoop,false,saludcoop
-Cartel de la Hemofilia,false,cartel-hemofilia
-Fondo Premium,false,interbolsa
-Interbolsa,false,interbolsa
-Inassa,false,inassa
-Triple A,false,inassa
-Estraval,false,estraval
-Juegos Nacionales del Meta,false,juegos-nacionales-meta
-Juegos Bolivarianos 2017,false,juegos-bolivarianos
-Cartel de la Seguridad Privada,false,cartel-seguridad-privada
-Juegos Deportivos Nacionales,false,juegos-deportivos-nacionales
+Odebrecht,false,odebrecht,Odebrecht
+Reficar,false,reficar,Reficar
+Llanopetrol,false,llanopetrol,Llanopetrol
+Marketmedios,false,marketmedios,Marketmedios
+FF. MM. de Cartagena,false,ffmm,FF. MM. de Cartagena
+FF. MM.,false,ffmm,FF. MM. de Cartagena
+FF.MM.,false,ffmm,FF. MM. de Cartagena
+fiscal anticorrupci[óòo]n,false,fiscal-anticorrupcion,Luis Gustavo Moreno (fiscal anticorrupción)
+Luis Gustavo Moreno,false,fiscal-anticorrupcion,Luis Gustavo Moreno (fiscal anticorrupción)
+Secretar[íìi]a de Seguridad de Medell[íìi]n,false,secretia-seguridad-medellin,Secretaría de Seguridad de Medellín
+Saludcoop,false,saludcoop,Saludcoop
+Cartel de la Hemofilia,false,cartel-hemofilia,Cartel de la Hemofilia
+Fondo Premium,false,interbolsa,Interbolsa
+Interbolsa,false,interbolsa,Interbolsa
+Inassa,false,inassa,Inassa
+Triple A,false,inassa,Inassa
+Estraval,false,estraval,Estraval
+Juegos Nacionales del Meta,false,juegos-nacionales-meta,Juegos Nacionales del Meta
+Juegos Bolivarianos 2017,false,juegos-bolivarianos,Juegos Bolivarianos 2017
+Cartel de la Seguridad Privada,false,cartel-seguridad-privada,Cartel de la Seguridad Privada
+Juegos Deportivos Nacionales,false,juegos-deportivos-nacionales,Juegos Deportivos Nacionales

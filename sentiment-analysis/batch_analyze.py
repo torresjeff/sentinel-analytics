@@ -63,33 +63,13 @@ def read_knowledge_base(file):
         words = {}
         for row in reader:
             if row[2] not in words:
-                words[row[2]] = {'synonyms': []}
+                words[row[2]] = {'synonyms': [], 'friendly_name': ''}
             words[row[2]]['synonyms'].append({'word': row[0], 'match_exact': True if row[1] == 'true' else False})
-    #print(words)
+            # TODO: esto está overriding el concepto de 'corrupción' (knowledge base de corrupcion)
+            # solo está quedando la ultima palabra que coja de la base de corrupcion como friendly name
+            words[row[2]]['friendly_name'] = row[3]
+    #print(words['corrupcion'])
     return words
-
-def get_all_comments_for(entity, match_exact=False, stored=False):
-    global comments
-    regex = {}
-    if match_exact:
-        regex = {'$regex': '.*\\b' + entity + '\\b.*'}
-    else:
-        regex = {'$regex': '.*' + entity + '.*', '$options': 'i'}
-
-    comments_for_entity = comments.find({ '$and': [
-        {'message': regex},
-        {'stored': {'$exists': stored}}
-    ]})
-    
-
-    comments_for_entity = list(comments_for_entity)
-    comments_for_entity = [Comment(c) for c in comments_for_entity]
-    comments_set = set()
-
-    if comments_for_entity:
-        comments_set.update(comments_for_entity)
-
-    return comments_set
 
 class Options(Enum):
     ALL = 1
@@ -102,7 +82,7 @@ class Options(Enum):
     NO_POLARITY_AND_STORED = 8
     NO_POLARITY_AND_NOT_STORED = 8
 
-def get_comments_for(entity, match_exact=False, opts=Options.ALL): #, with_polarity=False, stored=False):
+def get_comments_for(entity, match_exact=False, opts=Options.ALL):
     global comments
     regex = {}
     if match_exact:
@@ -285,11 +265,11 @@ if __name__ == '__main__':
             #print("comments_set =>", comments_set)
             lideres_opinion[name]['comments'] |= comments_set
             
-        for c in lideres_opinion[name]['comments']:
-            print("Comments with NO POLARITY of", name, "=>", c.comment)
+        #for c in lideres_opinion[name]['comments']:
+            #print("Comments with NO POLARITY of", name, "=>", c.comment)
         update_comments_with_polarity(lideres_opinion[name]['comments'])
 
-
+    # Write summary of comments to 'results' collection
     for name, value in lideres_opinion.items():
         comments_set = set()
         for s in value['synonyms']:
@@ -299,7 +279,7 @@ if __name__ == '__main__':
             print("comments with polarity and not stored =>", c.comment)
             updated_comment = dict(c.comment)
             updated_comment['stored'] = True
-            date = c.comment['created_time'].strftime('%Y_%m_%d')
+            date = c.comment['created_time'].strftime('%Y-%m-%d')
 
             res = results.find_one({'_id': name})
             if res is None:
@@ -307,7 +287,9 @@ if __name__ == '__main__':
                     '_id': name,
                     'comment_summary': {},
                     'post_summary': {},
-                    'reaction_summary': {}
+                    'reaction_summary': {},
+                    'friendly_name': value['friendly_name'],
+                    'type': 'lider' # TODO: cambiar por parametro en una funcion con el tipo de entidad que es
                 }
             
             if not date in res['comment_summary']:
@@ -320,7 +302,7 @@ if __name__ == '__main__':
                 res['comment_summary'][date]['comment_id'] = ''
 
 
-            if c.comment['like_count'] > res['comment_summary'][date]['like_count'] or res['comment_summary'][date]['comment_most_likes'] == '':
+            if c.comment['like_count'] > res['comment_summary'][date]['like_count'] or res['comment_summary'][date]['comment_id'] == '':
                 res['comment_summary'][date]['comment_most_likes'] = c.comment['message']
                 res['comment_summary'][date]['like_count'] = c.comment['like_count']
                 res['comment_summary'][date]['comment_id'] = c.comment['_id']

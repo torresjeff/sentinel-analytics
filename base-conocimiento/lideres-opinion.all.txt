@@ -1,16 +1,16 @@
-Mar[íìi]a Jimena Duz[áàa]n,false,maria-duzan
-Daniel Coronell,false,daniel-coronell
-Jorge Robledo,false,jorge-robledo
-Juanita Le[óòo]n,false,juanita-leon
-Claudia L[óòo]pez,false,claudia-lopez
-Gonzalo Guill[éèe]n,false,gonzalo-guillen
-Antonio Caballero,false,antonio-caballero
-Yolanda Ruiz,false,yolanda-ruiz
-Jos[éèe] Manuel Acevedo,false,jose-manuel-acevedo
-Darcy Quinn,false,darcy-quinn
-Mar[íìi]a Isabel Rueda,false,maria-isabel-rueda
-Vladdo,false,vladdo
-Daniel Samper,false,daniel-samper
-Salud Hern[áàa]ndez,false,salud-hernandez
-Felipe Zuleta Lleras,false,felipe-zuleta-lleras
-Matador,false,matador
+Mar[íìi]a Jimena Duz[áàa]n,false,maria-duzan,María Jimena Duzán
+Daniel Coronell,false,daniel-coronell,Daniel Coronell
+Jorge Robledo,false,jorge-robledo,Jorge Robledo
+Juanita Le[óòo]n,false,juanita-leon,Juanita león
+Claudia L[óòo]pez,false,claudia-lopez,Claudia López
+Gonzalo Guill[éèe]n,false,gonzalo-guillen,Gonzalo Guillén
+Antonio Caballero,false,antonio-caballero,Antonio Caballero
+Yolanda Ruiz,false,yolanda-ruiz,Yolanda Ruiz
+Jos[éèe] Manuel Acevedo,false,jose-manuel-acevedo,José Manuel Acevedo
+Darcy Quinn,false,darcy-quinn,Darcy Quinn
+Mar[íìi]a Isabel Rueda,false,maria-isabel-rueda,María Isabel Rueda
+Vladdo,false,vladdo,'Vladdo'
+Daniel Samper,false,daniel-samper,Daniel Samper
+Salud Hern[áàa]ndez,false,salud-hernandez,Salud Hernández
+Felipe Zuleta Lleras,false,felipe-zuleta-lleras,Felipe Zuleta Lleras
+Matador,false,matador,'Matador'
