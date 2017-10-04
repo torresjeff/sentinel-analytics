@@ -1,17 +1,17 @@
-soborno,false,corrupcion,Soborno
+soborn,false,corrupcion,Soborno
 extorsi[óòo]n,false,corrupcion,Extorsión
-robo,false,corrupcion,Robo
-hurto,false,corrupcion,Hurto
-cohecho,false,corrupcion,Cohecho
-ilegalidad,false,corrupcion,Ilegalidad
-enriquecimiento il[íìi]cito,false,corrupcion,Enriquecimiento ilícito
-fraude,false,corrupcion,Fraude
-falsedad,false,corrupcion,Falsedad
+rob[aáàeéèoóò][mnrs]?,false,corrupcion,Robo
+hurt[aeéèoóò],false,corrupcion,Hurto
+cohech,false,corrupcion,Cohecho
+ilegal,false,corrupcion,Ilegalidad
+enriquec[a-z]+ il[íìi]cit,false,corrupcion,Enriquecimiento ilícito
+fraud,false,corrupcion,Fraude
+fals,false,corrupcion,Falsedad
 ladr[óòo]n,false,corrupcion,Ladrones
-corruptos,false,corrupcion,Corruptos
-torcidos,false,corrupcion,Torcidos
-serrucho,false,corrupcion,Serrucho
-sacar tajada,false,corrupcion,'Sacar tajada'
-il[íìi]cito,false,corrupcion,Ilícito
-desfalco,false,corrupcion,Desfalco
-mermelada,false,corrupcion,Mermelada
+corrup,false,corrupcion,Corruptos
+torcid,false,corrupcion,Torcidos
+serruch,false,corrupcion,Serrucho
+sac[a-z]+ tajad,false,corrupcion,'Sacar tajada'
+il[íìi]cit,false,corrupcion,Ilícito
+desfalc,false,corrupcion,Desfalco
+mermela,false,corrupcion,Mermelada
