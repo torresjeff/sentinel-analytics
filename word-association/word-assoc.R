@@ -48,7 +48,9 @@ palabras <- c(rbind(palabras_message, palabras_name, palabras_description))
 palabras <- paste(unlist(palabras), collapse=',')
 jsonStr <- paste('{"$or": [', palabras, ']}')
 bson <- mongo.bson.from.JSON(jsonStr)
+Sys.time()
 all_posts <- mongo.find(mongo, "facebook.posts", bson)
+Sys.time()
 
 # TODO: ver si hay alguna manera con la que no toque iterate sobre todos los posts, esto implica crear otro arreglo y mas RAM
 posts <- vector()
@@ -68,7 +70,9 @@ tdm <- DocumentTermMatrix(corpus, control = list(stopwords = stopwords))
 inspect(tdm)
 
 # ES CASE SENSITIVE, todo está en minusculas
+Sys.time()
 associations <- findAssocs(tdm, c("soborno"), c(0.0))
+Sys.time()
 print(associations)
 
 #associations.df = as.data.frame(do.call(rbind, associations))
