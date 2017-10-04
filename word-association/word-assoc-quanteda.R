@@ -5,10 +5,12 @@ getwd()
 
 # DEV TOOLS PACKAGE
 # Si sale error, hacer: sudo apt-get update y sudo apt-get -y upgrade
-#install.packages("devtools", dependencies = TRUE)
+# sudo apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+install.packages("devtools", dependencies = TRUE)
 library(devtools)
 
 # QUANTEDA PACKAGE
+#install.packages("tm")
 #library(tm)
 # Si no funciona entonces: sudo apt-get install r-cran-xml
 #install.packages("XML", dependencies = TRUE)

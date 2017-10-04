@@ -48,11 +48,12 @@ palabras <- c(rbind(palabras_message, palabras_name, palabras_description))
 palabras <- paste(unlist(palabras), collapse=',')
 jsonStr <- paste('{"$or": [', palabras, ']}')
 bson <- mongo.bson.from.JSON(jsonStr)
-all_posts <- mongo.find(mongo, "facebook.posts", bson)
 
-# TODO: ver si hay alguna manera con la que no toque iterate sobre todos los posts, esto implica crear otro arreglo y mas RAM
+
+all_posts <- mongo.find(mongo, "facebook.posts", bson)
 posts <- vector()
 paste("Starting to fetch posts...", Sys.time())
+# TODO: ver si hay alguna manera con la que no toque iterate sobre todos los posts, esto implica crear otro arreglo y mas RAM
 while (mongo.cursor.next(all_posts)) {
   tmp = mongo.bson.to.list(mongo.cursor.value(all_posts))
   # TODO: toca clean up: quitar signos de puntuacion, stemming?, 
@@ -60,6 +61,8 @@ while (mongo.cursor.next(all_posts)) {
   tmp["name"] <- gsub("[!\"“”‘’·&/()–=?¿¡\'\\@|ºª#~¬{}^*-.,;:/►→]", " ", tmp["name"])
   tmp["description"] <- gsub("[!\"“”‘’·&/()–=?¿¡\'\\@|ºª#~¬{}^*-.,;:/►→]", " ", tmp["description"])
   tmp["message"] <- paste(tmp["message"], tmp["name"], tmp["description"])
+  # Eliminar urls
+  tmp["message"] <- gsub(" ?(f|ht)tp(s?)://(.*)[.][a-z]+", "", tmp["message"])
   posts <- c(posts, tmp["message"]) # TODO: falta tmp["name"], en la ultima version del scraper
 }
 paste("Finished fetching posts", Sys.time())
@@ -71,13 +74,13 @@ paste("Creating DocumentTermMatrix", Sys.time())
 tdm <- DocumentTermMatrix(corpus, control = list(stopwords = stopwords))
 paste("Finished creating DocumentTermMatrix", Sys.time())
 #control = list(removePunctuation = TRUE)
-inspect(tdm)
+#inspect(tdm)
 #tdm$dimnames
 # ES CASE SENSITIVE, todo está en minusculas
 paste("Finding word associations...", Sys.time())
-associations <- findAssocs(tdm, c("corrupto"), c(0.0))
+associations <- findAssocs(tdm, c("corrupción"), c(0.0))
 paste("Finished finding word associations", Sys.time())
-print(associations[1])
+#print(associations[1])
 
 associations.df = as.data.frame(do.call(rbind, associations))
 write.csv(associations, file="associations-corrupto.csv")
