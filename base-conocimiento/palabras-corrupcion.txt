@@ -11,7 +11,7 @@ ladr[óòo]n,false,corrupcion,Ladrones
 corrup,false,corrupcion,Corruptos
 torcid,false,corrupcion,Torcidos
 serruch,false,corrupcion,Serrucho
-sac[a-z]+ tajad,false,corrupcion,'Sacar tajada'
+sac[a-z]+ tajad[a-z]+,false,corrupcion,'Sacar tajada'
 il[íìi]cit,false,corrupcion,Ilícito
 desfalc,false,corrupcion,Desfalco
 mermela,false,corrupcion,Mermelada
