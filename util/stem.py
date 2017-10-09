@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 from nltk.tag import StanfordNERTagger
 import unicodedata, re, string
+import unidecode
 import pymongo
 from model import Facebook
 from knowledge_base import KnowledgeBase
@@ -11,9 +12,8 @@ from knowledge_base import KnowledgeBase
 class Stemmer:
     def __init__(self):
         self.stopwords = nltk.corpus.stopwords.words('spanish')
-        #print(stopwords)
-        #self.stopwords_no_accents = []
-        #for w in self.stopwords: self.stopwords_no_accents.append(self.delete_special_characters(self.delete_accents(w)))
+        self.stopwords_no_accents = []
+        for w in self.stopwords: self.stopwords_no_accents.append(self.delete_accents(w))
         self.stemmer = SnowballStemmer('spanish')
 
     #def delete_special_characters(self, lin):
@@ -29,34 +29,73 @@ class Stemmer:
         #re.sub('[\W_]+', '', text)
         #print(re.sub(r'\W+', '', text))
         #print(text.lower())
-        return text.lower()
+        #return text.lower()
+        return text
 
 
-    def delete_accents(self, word):
-        return ''.join((c for c in unicodedata.normalize('NFD', word) if unicodedata.category(c) != 'Mn'))
+    def delete_accents(self, text):
+        #return ''.join((c for c in unicodedata.normalize('NFD', word) if unicodedata.category(c) != 'Mn'))
+        return unidecode.unidecode(text)
 
     #Elimina los StopWords
     def delete_stopword(self, text):
-        return_data=[]
-        for word in text:
-            if (word.lower() not in self.stopwords_no_accents) and (word != "") and (len(word) >2) :
-                return_data.append(word.lower())
+        return_data=""
+        for word in text.split():
+            if (word.lower() not in self.stopwords_no_accents) and (word != "") and (len(word) > 2):
+                return_data += word.lower() + " "
         return return_data
     
     def stem(self, text):
+        text = text.lower()
+        text = self.delete_stopword(text)
+        text = self.delete_accents(text)
         words_text = nltk.word_tokenize(text)
-        words_text = self.delete_stopword(words_text)
+        words = []
         for w in words_text:
-            print(w, "=>", self.stemmer.stem(self.delete_special_characters(self.delete_accents(w))))
-            w = self.stemmer.stem(self.delete_special_characters(self.delete_accents(w)))
+            words.append(self.stemmer.stem(w))
+        
+        return ' '.join(words)
+    
+    def stem_array(self, collection, query):
+        results = fb.query(collection, query)
+        if results is not None:
+            for r in results:
+                temp = ''
+                #print(r['_id'])
+                if 'message' in r:
+                    temp += r['message']
+                    #print("message =>", r['message'])
+                if 'name' in r and collection == 'posts':
+                    temp += " " + r['name']
+                    #print("name =>", r['name'])
+                if 'description' in r and collection == 'posts':
+                    temp += " " + r['description']
+                    #print("description =>", r['description'])
+                
+                if temp is not '':
+                    r['whole_sentence'] = temp
+                    r['whole_sentence'] = self.delete_special_characters(r['whole_sentence'])
+                    r['stemmed'] = self.stem(r['whole_sentence'])
+                    print(r['_id'])
+                    print(r['whole_sentence'])
+                    print(r['stemmed'])
+                    print("===================")
 
-        return words_text
+            fb.update_all(collection, results)
 
 if __name__ == '__main__':
     fb = Facebook()
     kb = KnowledgeBase()
     stemmer = Stemmer()
-
+    text = "Jajajajaja valiente justicia alcahueta, a todos los políticos corruptos les están dando casa por cárcel, que vergüenza. Con razón tantos corruptos, saben que la justicia es laxa entonces llegan a un acuerdo se declaran culpables y les dan una mínima pena en su casa.👎👎👎👎👎 https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python"
+    """
+    st = StanfordNERTagger('../base-conocimiento/nlp/stanford-ner/classifiers/english.all.3class.distsim.crf.ser.gz', #'../base-conocimiento/nlp/stanford-spanish-corenlp-2017-06-09-models.jar',
+					   '../base-conocimiento/nlp/stanford-ner/stanford-ner.jar',
+					   encoding='utf-8')
+    words = nltk.word_tokenize(text)
+    classified_text = st.tag(words)
+    print(classified_text)
+    """
     # Leer base de conocimiento
     palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
     casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
@@ -70,7 +109,29 @@ if __name__ == '__main__':
     instituciones = kb.get_words_as_list(instituciones)
     lideres_opinion = kb.get_words_as_list(lideres_opinion)
     partidos_politicos = kb.get_words_as_list(partidos_politicos)
-        
+    
+    # Queries para posts
+    posts_queries = []
+    posts_queries.append(fb.generate_regex_query(['message', 'name', 'description'], palabras_corrupcion))
+    posts_queries.append(fb.generate_regex_query(['message', 'name', 'description'], casos_corrupcion))
+    posts_queries.append(fb.generate_regex_query(['message', 'name', 'description'], instituciones))
+    posts_queries.append(fb.generate_regex_query(['message', 'name', 'description'], lideres_opinion))
+    posts_queries.append(fb.generate_regex_query(['message', 'name', 'description'], partidos_politicos))
+
+    # Queries para comments
+    comments_queries = []
+    comments_queries.append(fb.generate_regex_query(['message'], palabras_corrupcion))
+    comments_queries.append(fb.generate_regex_query(['message'], casos_corrupcion))
+    comments_queries.append(fb.generate_regex_query(['message'], instituciones))
+    comments_queries.append(fb.generate_regex_query(['message'], lideres_opinion))
+    comments_queries.append(fb.generate_regex_query(['message'], partidos_politicos))
+
+    for q in posts_queries:
+        stemmer.stem_array('posts', q)
+    
+    for q in comments_queries:
+        stemmer.stem_array('comments', q)
+    """
     # Queries para posts
     query_posts_palabras = fb.generate_regex_query(['message', 'name', 'description'], palabras_corrupcion)
     query_posts_casos = fb.generate_regex_query(['message', 'name', 'description'], casos_corrupcion)
@@ -84,41 +145,16 @@ if __name__ == '__main__':
     query_comments_instituciones = fb.generate_regex_query(['message'], instituciones)
     query_comments_lideres = fb.generate_regex_query(['message'], lideres_opinion)
     query_comments_partidos = fb.generate_regex_query(['message'], partidos_politicos)
+    """
 
     #print(palabras_corrupcion)
 
-    results = fb.query('posts', query_posts_palabras)
-    if results is not None:
-        for r in results:
-            temp = ''
-            #print(r['_id'])
-            if 'message' in r:
-                temp += r['message']
-                #print("message =>", r['message'])
-            if 'name' in r:
-                temp += " " + r['name']
-                #print("name =>", r['name'])
-            if 'description' in r:
-                temp += " " + r['description']
-                #print("description =>", r['description'])
-            
-            if temp is not '':
-                r['whole_sentence'] = temp
-            
-        for r in results:
-            if 'whole_sentence' in r:
-                #print(r['whole_sentence'])
-                r['stemmed'] = stemmer.delete_special_characters(r['whole_sentence'])
-                #print(r['stemmed'])
-                #print("===================")
-
-            
+    
 
     
     # Stemmer
     
-    text = "Jajajajaja valiente justicia alcahueta, a todos los políticos corruptos les están dando casa por cárcel, que vergüenza. Con razón tantos corruptos, saben que la justicia es laxa entonces llegan a un acuerdo se declaran culpables y les dan una mínima pena en su casa.👎👎👎👎👎 https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python"
-    stemmer.delete_special_characters(text)
+    #stemmer.stem(text)
 
 
     """

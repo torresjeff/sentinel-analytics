@@ -8,4 +8,4 @@ Cambio Radical,false,radical,Cambio Radical
 Polo,false,polo,Polo
 Opci[óòo]n Ciudadana,false,oc,Opción Ciudadana
 Partido Verde,false,verde,Partido Verde
-Mira,true,mira,Mira
+Partido Mira,false,mira,Mira

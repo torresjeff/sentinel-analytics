@@ -161,7 +161,7 @@ class Facebook:
         for a in attr:
             for v in values:
                 query['$or'].append({a: {"$regex": ".*" + v + ".*", '$options': 'i'}})
-        return query
+        return {'$and': [query, {'whole_sentence': {'$exists': False}}]}
     
     def query(self, collection, query):
         if collection == 'posts':
@@ -174,6 +174,21 @@ class Facebook:
             return list(self.results.find(query))
         else:
             return None
+        
+    def update_all(self, collection, docs, upsert=True):
+        if collection == 'posts':
+            for d in docs:
+                #print(d)
+                self.posts.update({'_id': d['_id']}, d, upsert=upsert)
+        elif collection == 'comments':
+            for d in docs:
+                #print(d)
+                self.comments.update({'_id': d['_id']}, d, upsert=upsert)
+        elif collection == 'reactions':
+            for d in docs:
+                #print(d)
+                self.reactions.update({'_id': d['_id']}, d, upsert=upsert)
+
 
 if __name__ == '__main__':
     fb = Facebook()
