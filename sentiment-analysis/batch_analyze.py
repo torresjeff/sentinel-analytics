@@ -10,7 +10,6 @@ import datetime
 
 client = pymongo.MongoClient("localhost", 27017)
 db = client.facebook # use the facebook database (automatically created if it doesn't exist)
-pages = db.pages
 posts = db.posts
 reactions = db.reactions
 comments = db.comments
