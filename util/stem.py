@@ -6,6 +6,7 @@ from nltk.tag import StanfordNERTagger
 import unicodedata, re, string
 import unidecode
 import pymongo
+import datetime
 from model import Facebook
 from knowledge_base import KnowledgeBase
 
@@ -50,8 +51,8 @@ class Stemmer:
     
     def stem(self, text):
         text = text.lower()
-        text = self.delete_stopword(text)
-        text = self.delete_accents(text)
+        #text = self.delete_stopword(text)
+        #text = self.delete_accents(text)
         words_text = nltk.word_tokenize(text)
         words = []
         for w in words_text:
@@ -78,13 +79,14 @@ class Stemmer:
                 if temp is not '':
                     r['whole_sentence'] = temp
                     r['whole_sentence'] = self.delete_special_characters(r['whole_sentence'])
+                    r['whole_sentence'] = self.delete_accents(r['whole_sentence'])
                     r['whole_sentence'] = self.delete_numbers(r['whole_sentence'])
                     r['whole_sentence'] = self.delete_stopword(r['whole_sentence'])
                     r['stemmed'] = self.stem(r['whole_sentence'])
-                    print(r['_id'])
-                    print(r['whole_sentence'])
-                    print(r['stemmed'])
-                    print("===================")
+                    #print(r['_id'])
+                    #print(r['whole_sentence'])
+                    #print(r['stemmed'])
+                    #print("===================")
 
             fb.update_all(collection, results)
 
@@ -131,11 +133,15 @@ if __name__ == '__main__':
     comments_queries.append(fb.generate_regex_query(['message'], lideres_opinion))
     comments_queries.append(fb.generate_regex_query(['message'], partidos_politicos))
 
+    print("Stemming posts...", datetime.datetime.now())
     for q in posts_queries:
         stemmer.stem_array('posts', q)
+    print("Finished stemming posts...", datetime.datetime.now())
     
+    print("Stemming comments...", datetime.datetime.now())
     for q in comments_queries:
         stemmer.stem_array('comments', q)
+    print("Finished stemming comments...", datetime.datetime.now())
     """
     # Queries para posts
     query_posts_palabras = fb.generate_regex_query(['message', 'name', 'description'], palabras_corrupcion)
