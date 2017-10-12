@@ -1,0 +1,17 @@
+soborno,false,corrupcion,Soborno
+extorsión,false,corrupcion,Extorsión
+robo,false,corrupcion,Robo
+hurto,false,corrupcion,Hurto
+cohecho,false,corrupcion,Cohecho
+ilegalidad,false,corrupcion,Ilegalidad
+enriquecimiento ilícito,false,corrupcion,Enriquecimiento ilícito
+fraude,false,corrupcion,Fraude
+falsedad,false,corrupcion,Falsedad
+ladrones,false,corrupcion,Ladrones
+corruptos,false,corrupcion,Corruptos
+torcidos,false,corrupcion,Torcidos
+serrucho,false,corrupcion,Serrucho
+sacar tajada,false,corrupcion,'Sacar tajada'
+ilícito,false,corrupcion,Ilícito
+desfalco,false,corrupcion,Desfalco
+mermelada,false,corrupcion,Mermelada

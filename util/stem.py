@@ -45,6 +45,9 @@ class Stemmer:
                 return_data += word.lower() + " "
         return return_data
     
+    def delete_numbers(self, text):
+        return re.sub('\d+', '', text)
+    
     def stem(self, text):
         text = text.lower()
         text = self.delete_stopword(text)
@@ -75,6 +78,8 @@ class Stemmer:
                 if temp is not '':
                     r['whole_sentence'] = temp
                     r['whole_sentence'] = self.delete_special_characters(r['whole_sentence'])
+                    r['whole_sentence'] = self.delete_numbers(r['whole_sentence'])
+                    r['whole_sentence'] = self.delete_stopword(r['whole_sentence'])
                     r['stemmed'] = self.stem(r['whole_sentence'])
                     print(r['_id'])
                     print(r['whole_sentence'])
