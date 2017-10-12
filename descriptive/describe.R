@@ -84,13 +84,13 @@ ggplot(posts,aes(shares)) + geom_histogram()
 #train.indeces <- sample(1:nrow(posts_merged), 5)
 #temp <- posts_merged[train.indeces, ]
 
-ggplot(posts_merged, aes(x=name.y, y=shares)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Medio")
-ggplot(posts_merged, aes(x=name.y, y=sad)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Medio")
-ggplot(posts_merged, aes(x=name.y, y=wow)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Medio")
-ggplot(posts_merged, aes(x=name.y, y=love)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Medio")
-ggplot(posts_merged, aes(x=name.y, y=like)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Medio")
-ggplot(posts_merged, aes(x=name.y, y=angry)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Medio")
-ggplot(posts_merged, aes(x=name.y, y=haha)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Medio")
+ggplot(posts_merged, aes(x=name.y, y=shares)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Página") + theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+ggplot(posts_merged, aes(x=name.y, y=sad)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Página") + theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+ggplot(posts_merged, aes(x=name.y, y=wow)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Página") + theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+ggplot(posts_merged, aes(x=name.y, y=love)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Página") + theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+ggplot(posts_merged, aes(x=name.y, y=like)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Página") + theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+ggplot(posts_merged, aes(x=name.y, y=angry)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Página") + theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
+ggplot(posts_merged, aes(x=name.y, y=haha)) + stat_boxplot(geom ='errorbar', width = 0.4) + geom_boxplot() + labs(x="Página") + theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
 
 #CV(posts$shares)
 
