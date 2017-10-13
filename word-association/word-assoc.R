@@ -179,12 +179,39 @@ for (y in years) {
                 target_obj <- total_palabras_assoc[[names(all_assocs[[as.character(palabras_corrupcion_assoc[i,1])]])[j]]] 
                 #print(paste("source obj", source_obj$id))
                 #print(paste("target obj", target_obj$id))
-                edges <- c(edges, list(id=paste(as.character(palabras_corrupcion_assoc[i,1]), "_", names(all_assocs[[as.character(palabras_corrupcion_assoc[i,1])]])[j], sep=""), source=source_obj$id, target=target_obj$id))
+                id <- paste(as.character(palabras_corrupcion_assoc[i,1]), "_", names(all_assocs[[as.character(palabras_corrupcion_assoc[i,1])]])[j], sep="")
+                #print(id)
+                edges[[id]] <- list(id=id, source=source_obj$id, target=target_obj$id)
+                #edges <- c(edges, id=list(id=id, source=source_obj$id, target=target_obj$id))
                 #print("Added new edge")
               }
             }
           }
           #print(edges)
+          
+          cont <- 1
+          finalJsonStr <- '{"nodes": ['
+          for (n in total_palabras_assoc) {
+            finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '","x": ', 0, ', "y": ', 0, ', "size": ', n$size, '}', sep="")
+            if (cont < length(total_palabras_assoc)) {
+              finalJsonStr <- paste(finalJsonStr, ",", sep="")
+            }
+            cont <- cont + 1
+          }
+          finalJsonStr <- paste(finalJsonStr, '], "edges": [')
+          cont <- 1
+          for (e in edges) {
+            finalJsonStr <- paste(finalJsonStr, '{"id": "', e$id, '","source": "', e$source, '","target": "', e$target, '"}', sep="")
+            if (cont < length(edges)) {
+              finalJsonStr <- paste(finalJsonStr, ",", sep="")
+            }
+            cont <- cont + 1
+          }
+          finalJsonStr <- paste(finalJsonStr, ']')
+          finalJsonStr <- paste(finalJsonStr, ', "year": ', y)
+          finalJsonStr <- paste(finalJsonStr, ', "month": ', m)
+          finalJsonStr <- paste(finalJsonStr, '}')
+          
           
           # Insert new summary of assocs
           # TODO: capitalize first letter
@@ -203,7 +230,7 @@ for (y in years) {
     #print(total_palabras_assoc)
   }
 }
-
+finalJsonStr
 
 jsonStr <- paste('{"_id": "', dates[1], '"}', sep="")
 jsonStr
