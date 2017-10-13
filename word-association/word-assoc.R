@@ -231,7 +231,8 @@ for (y in years) {
   }
 }
 finalJsonStr
-
+bson <- mongo.bson.from.JSON(finalJsonStr)
+mongo.insert(mongo, "facebook.assocs",bson <- mongo.bson.from.JSON(jsonStr))
 jsonStr <- paste('{"_id": "', dates[1], '"}', sep="")
 jsonStr
 bson <- mongo.bson.from.JSON(jsonStr)
