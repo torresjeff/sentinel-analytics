@@ -25,6 +25,7 @@ class Stemmer:
         #return lin.lower()
     def delete_special_characters(self, text):
         text = re.sub(r"http\S+", "", text) # Remove links
+        text = re.sub(r"\S+\.\S+\/\S*\s", "", text) # Remove links
         pattern = re.compile('[\W_]+', re.UNICODE) # Only keep alphanumeric characters
         text = pattern.sub(' ', text)
         #re.sub('[\W_]+', '', text)

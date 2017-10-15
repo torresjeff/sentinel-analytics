@@ -6,6 +6,7 @@ robo,true,Robo,robo,#ec5148
 hurto,true,Hurto,hurto,#ec5148
 cohecho,true,Cohecho,cohecho,#ec5148
 ilegalidad,true,Ilegalidad,ilegalidad,#ec5148
+carrusel,true,Carrusel,carrusel,#ec5148
 enriquecimiento ilicito,true,Enriquecimiento ilícito,enriquecimiento,#ec5148
 fraude,true,Fraude,fraude,#ec5148
 falsedad,true,Falsedad,falsedad,#ec5148
@@ -29,6 +30,8 @@ darcy quinn,true,Darcy Quinn,quinn,#009933
 maria isabel rueda,true,María Isabel Rueda,rueda,#009933
 vladdo,true,'Vladdo',vladdo,#009933
 daniel samper,true,Daniel Samper,samper,#009933
+alvaro uribe,true,Álvaro Uribe,uribe,#009933
+juan manuel santos,true,Juan Manuel Santos,santos,#009933
 salud hernandez,true,Salud Hernández,salud,#009933
 felipe zuleta lleras,true,Felipe Zuleta Lleras,lleras,#009933
 matador,true,'Matador',matador,#009933
