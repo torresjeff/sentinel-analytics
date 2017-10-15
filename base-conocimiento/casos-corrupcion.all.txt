@@ -16,6 +16,7 @@ Inassa,false,inassa,Inassa
 Triple A,false,inassa,Inassa
 Estraval,false,estraval,Estraval
 Juegos Nacionales del Meta,false,juegos-nacionales-meta,Juegos Nacionales del Meta
+Juegos Nacionales,false,juegos-nacionales,Juegos Nacionales
 Juegos Bolivarianos 2017,false,juegos-bolivarianos,Juegos Bolivarianos 2017
 Cartel de la Seguridad Privada,false,cartel-seguridad-privada,Cartel de la Seguridad Privada
 Juegos Deportivos Nacionales,false,juegos-deportivos-nacionales,Juegos Deportivos Nacionales

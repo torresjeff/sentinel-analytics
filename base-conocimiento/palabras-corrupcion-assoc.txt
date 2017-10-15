@@ -1,17 +1,63 @@
-soborno,false,corrupcion,Soborno
-extorsión,false,corrupcion,Extorsión
-robo,false,corrupcion,Robo
-hurto,false,corrupcion,Hurto
-cohecho,false,corrupcion,Cohecho
-ilegalidad,false,corrupcion,Ilegalidad
-enriquecimiento ilícito,false,corrupcion,Enriquecimiento ilícito
-fraude,false,corrupcion,Fraude
-falsedad,false,corrupcion,Falsedad
-ladrones,false,corrupcion,Ladrones
-corruptos,false,corrupcion,Corruptos
-torcidos,false,corrupcion,Torcidos
-serrucho,false,corrupcion,Serrucho
-sacar tajada,false,corrupcion,'Sacar tajada'
-ilícito,false,corrupcion,Ilícito
-desfalco,false,corrupcion,Desfalco
-mermelada,false,corrupcion,Mermelada
+palabras_buscar,no_stopwords,pretty_name,keyword,color
+corruptos,true,Corruptos,corruptos,#ec5148
+soborno,true,Soborno,soborno,#ec5148
+extorsion,true,Extorsión,extorsion,#ec5148
+robo,true,Robo,robo,#ec5148
+hurto,true,Hurto,hurto,#ec5148
+cohecho,true,Cohecho,cohecho,#ec5148
+ilegalidad,true,Ilegalidad,ilegalidad,#ec5148
+enriquecimiento ilicito,true,Enriquecimiento ilícito,enriquecimiento,#ec5148
+fraude,true,Fraude,fraude,#ec5148
+falsedad,true,Falsedad,falsedad,#ec5148
+ladrones,true,Ladrones,ladrones,#ec5148
+torcidos,true,Torcidos,torcidos,#ec5148
+serrucho,true,Serrucho,serrucho,#ec5148
+sacar tajada,true,'Sacar tajada',tajada,#ec5148
+ilicito,true,Ilícito,ilicito,#ec5148
+desfalco,true,Desfalco,desfalco,#ec5148
+mermelada,true,Mermelada,mermelada,#ec5148
+maria jimena duzan,true,María Jimena Duzán,duzan,#009933
+daniel coronell,true,Daniel Coronell,coronell,#009933
+jorge robledo,true,Jorge Robledo,robledo,#009933
+juanita leon,true,Juanita león,juanita,#009933
+claudia lopez,true,Claudia López,claudia,#009933
+gonzalo guillen,true,Gonzalo Guillén,guillen,#009933
+antonio caballero,true,Antonio Caballero,caballero,#009933
+yolanda ruiz,true,Yolanda Ruiz,yolanda,#009933
+jose manuel acevedo,true,José Manuel Acevedo,acevedo,#009933
+darcy quinn,true,Darcy Quinn,quinn,#009933
+maria isabel rueda,true,María Isabel Rueda,rueda,#009933
+vladdo,true,'Vladdo',vladdo,#009933
+daniel samper,true,Daniel Samper,samper,#009933
+salud hernandez,true,Salud Hernández,salud,#009933
+felipe zuleta lleras,true,Felipe Zuleta Lleras,lleras,#009933
+matador,true,'Matador',matador,#009933
+Partido de la U,false,Partido de la U,partido,#666699
+centro democratico,true,Centro Democrático,democratico,#666699
+partido liberal,true,Partido Liberal,liberal,#666699
+partido conservador,true,Partido Conservador,conservador,#666699
+cambio radical,true,Cambio Radical,radical,#666699
+polo,true,Polo,polo,#666699
+opcion ciudadana,true,Opción Ciudadana,ciudadana,#666699
+partido verde,true,Partido Verde,verde,#666699
+partido mira,true,Partido Mira,mira,#666699
+odebrecht,true,Odebrecht,odebrecht,#ff6600
+reficar,true,Reficar,reficar,#ff6600
+llanopetrol,true,Llanopetrol,llanopetrol,#ff6600
+marketmedios,true,Marketmedios,marketmedios,#ff6600
+FF\\. MM\\. de Cartagena,false,FF. MM. de Cartagena,cartagena,#ff6600
+fiscal anticorrupcion,true,Fiscal Anticorrupción,anticorrupcion,#ff6600
+luis gustavo moreno,true,Fiscal Anticorrupción,gustavo,#ff6600
+Secretar[íìi]a de Seguridad de Medell[íìi]n,false,Secretaría de Seguridad de Medellín,secretaria,#ff6600
+saludcoop,true,Saludcoop,saludcoop,#ff6600
+Cartel de la Hemofilia,false,Cartel de la Hemofilia,hemofilia,#ff6600
+fondo premium,true,Fondo Premium,premium,#ff6600
+interbolsa,true,Interbolsa,interbolsa,#ff6600
+inassa,true,Inassa,inassa,#ff6600
+Triple A,false,Triple A,triple,#ff6600
+estraval,true,Estraval,estraval,#ff6600
+Juegos Nacionales del Meta,false,Juegos Nacionales del Meta,meta,#ff6600
+juegos nacionales,true,Juegos Nacionales,nacionales,#ff6600
+Juegos Bolivarianos 2017,false,Juegos Bolivarianos 2017,bolivarianos,#ff6600
+Cartel de la Seguridad Privada,false,Cartel de la Seguridad Privada,privada,#ff6600
+juegos deportivos nacionales,true,Juegos Deportivos Nacionales,deportivos,#ff6600
