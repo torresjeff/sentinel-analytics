@@ -64,3 +64,19 @@ juegos nacionales,true,Juegos Nacionales,nacionales,#ff6600
 Juegos Bolivarianos 2017,false,Juegos Bolivarianos 2017,bolivarianos,#ff6600
 Cartel de la Seguridad Privada,false,Cartel de la Seguridad Privada,privada,#ff6600
 juegos deportivos nacionales,true,Juegos Deportivos Nacionales,deportivos,#ff6600
+Transparencia por Colombia,false,Transparencia por Colombia,colombia,#cc00cc
+Centro de Estrategias Anticorrupci[óòo]n,false,Centro de Estrategias Anticorrupción,estrategias,#cc00cc
+pacto global,true,Pacto Global,pacto,#cc00cc
+naciones unidas,true,Naciones Unidas,unidas,#cc00cc
+onu,true,ONU,onu,#cc00cc
+Secretar[íìi]a de Transparencia,false,Secretaría de Transparencia,transparencia,#cc00cc
+sic,true,SIC,sic,#cc00cc
+Superintendencia de Industria y Comercio,false,Superintendencia de Industria y Comercio,industria,#cc00cc
+policia nacional,true,Policía Nacional,policia,#cc00cc
+Congreso de la Rep[úùu]blica,false,Congreso de la República,congreso,#cc00cc
+superintendencia financiera,true,Superintendencia Financiera,financiera,#cc00cc
+supersociedades,true,Supersociedades,supersociedades,#cc00cc
+fiscalia,true,Fiscaalía,fiscalia,#cc00cc
+procuraduria,true,Procuraduría,procuraduria,#cc00cc
+contraloria,true,Contraloría,contraloria,#cc00cc
+consejo nacional electoral,true,Consejo Nacional Electoral,electoral,#cc00cc
