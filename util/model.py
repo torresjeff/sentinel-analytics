@@ -156,6 +156,21 @@ class Facebook:
             posts_set.update(posts_for_entity)
         return posts_set
     
+    def get_comments_for_post(self, post_id, should_slice=True):
+        if should_slice:
+            post_id = post_id[post_id.find("_")+1:]
+
+        print(post_id)
+        return self.query('comments', {"_id": {"$regex": post_id + "_.*"}})
+
+    def get_reactions_for_post(self, post_id):
+        reactions = self.query('reactions', {"_id": post_id})
+        if len(reactions) > 0:
+            return reactions[0]
+        
+        return None
+
+    
     def generate_regex_query(self, attr=[], values=[]):
         query = {'$or': []}
         for a in attr:
@@ -232,7 +247,10 @@ if __name__ == '__main__':
 
     
     res = fb.query('posts', query_posts_palabras)
-
     print(res)
+
+    res = fb.get_comments_for_post("14302129065_10155889655989066")
+    print(res)
+
 
     #fb.generate_regex()
