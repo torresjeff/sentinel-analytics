@@ -85,9 +85,8 @@ y_coord <- c(20,-20,0,0,8)
 
 generate_assocs_summary <- function (type, keywords, pretty_name, queries, colors) {
   for (y in years) {
-    print(y)
     for (m in months) {
-      print(m)
+      print(paste(y, m))
       total_palabras_assoc <- list()
       for (i in 1:length(keywords)) {
         # TODO: adjust size de keywords de corrupcion
@@ -144,12 +143,12 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
                   
                   # If one of the words found in the association was already found before, then simply update the size of the node instead of adding a new one
                   if (names(associations[[as.character(keywords[q])]])[j] %in% total_palabras_assoc && !(is.na(names(associations[[as.character(keywords[q])]])[j]))) {
-                    print("Found an already existing word")
+                    #print("Found an already existing word")
                     temporary_obj <- total_palabras_assoc[[names(associations[[as.character(keywords[q])]])[j]]] 
                     total_palabras_assoc[[names(associations[[as.character(keywords[q])]])[j]]] <- list(id=temporary_obj$id, size=temporary_obj$size + associations[[as.character(keywords[q])]][j]*20, x=temporary_obj$x, y=temporary_obj$y, label=temporary_obj$label, color=temporary_obj$color)
                     
                   } else if (!is.na(names(associations[[as.character(keywords[q])]])[j])) { # Else, it's a new word (new node)
-                    print("Adding new word")
+                    #print("Adding new word")
                     total_palabras_assoc[[names(associations[[as.character(keywords[q])]])[j]]] <- list(id=paste("n", current_id, sep=""), size=associations[[as.character(keywords[q])]][j]*20, x=0, y=0, label=names(associations[[as.character(keywords[q])]])[j])
                     current_id <- current_id + 1
                   }
