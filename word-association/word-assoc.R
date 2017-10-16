@@ -222,6 +222,10 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
 }
 
 #palabras_corrupcion_assoc[,4]
+print(paste("Generating word associations for posts...", Sys.time()))
 generate_assocs_summary("posts", palabras_corrupcion_assoc[,4], palabras_corrupcion_assoc[,3], queries, palabras_corrupcion_assoc[,5])
+print(paste("Finished generating word associations for posts...", Sys.time()))
+print(paste("Generating word associations for comments...", Sys.time()))
 generate_assocs_summary("comments", palabras_corrupcion_assoc[,4], palabras_corrupcion_assoc[,3], queries, palabras_corrupcion_assoc[,5])
+print(paste("Finished word associations for comments...", Sys.time()))
 
