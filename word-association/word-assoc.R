@@ -81,18 +81,14 @@ today <- as.POSIXct(Sys.Date())
 # print(queries)
 # print(month_posts)
 
-for (i in 1:length(palabras_corrupcion_assoc[,1])) {
-  print(strsplit(as.character(palabras_corrupcion_assoc[i,1]), "\\s"))
-}
-
-generate_assocs_summary <- function (type, keywords, pretty_name, queries, colors) {
+generate_assocs_summary <- function (type, keywords, pretty_name, queries, colors, no_accents) {
   for (y in years) {
     for (m in months) {
       print(paste(y, m))
       total_palabras_assoc <- list()
       for (i in 1:length(keywords)) {
         # TODO: adjust size de keywords de corrupcion
-        total_palabras_assoc[[as.character(keywords[i])]] <- list(id=paste("n", i, sep=""), size=5, label=as.character(pretty_name[i]), color=as.character(colors[i]))
+        total_palabras_assoc[[as.character(keywords[i])]] <- list(id=paste("n", i, sep=""), size=15, label=as.character(pretty_name[i]), color=as.character(colors[i]))
       }
       #print(total_palabras_assoc)
       current_id <- length(keywords) + 1
@@ -133,7 +129,10 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
               # For each word in the knowledge base (palabras de corrupcion), find the associations of that word in particular
               
               
-              associations <- findAssocs(tdm, as.character(keywords[q]), c(0.0))
+              #associations <- findAssocs(tdm, as.character(keywords[q]), c(0.0))
+              #print(strsplit(as.character(pretty_name[q]), " "))
+              words <- unique(strsplit(as.character(no_accents[q]), "\\s")[[1]])
+              associations <- findAssocs(tdm, words, c(0.0))
               #print(associations)
               all_assocs <- c(all_assocs, associations)
               # If it did find any associations then store the size of the node and the id
@@ -226,9 +225,9 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
 
 #palabras_corrupcion_assoc[,4]
 print(paste("Generating word associations for posts...", Sys.time()))
-generate_assocs_summary("posts", palabras_corrupcion_assoc[,4], palabras_corrupcion_assoc[,3], queries, palabras_corrupcion_assoc[,5])
+generate_assocs_summary("posts", palabras_corrupcion_assoc[,4], palabras_corrupcion_assoc[,3], queries, palabras_corrupcion_assoc[,6], palabras_corrupcion_assoc[,5])
 print(paste("Finished generating word associations for posts...", Sys.time()))
 print(paste("Generating word associations for comments...", Sys.time()))
-generate_assocs_summary("comments", palabras_corrupcion_assoc[,4], palabras_corrupcion_assoc[,3], queries, palabras_corrupcion_assoc[,5])
+generate_assocs_summary("comments", palabras_corrupcion_assoc[,4], palabras_corrupcion_assoc[,3], queries, palabras_corrupcion_assoc[,6], palabras_corrupcion_assoc[,5])
 print(paste("Finished word associations for comments...", Sys.time()))
 
