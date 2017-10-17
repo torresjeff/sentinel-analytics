@@ -56,7 +56,7 @@ print(queries)
 years <- c(2016, 2017)
 months <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 #years <- c(2017)
-#months <- c(4, 5, 6, 7, 8, 9, 10)
+#months <- c(9, 10)
 today <- as.POSIXct(Sys.Date())
 
 
@@ -80,8 +80,10 @@ today <- as.POSIXct(Sys.Date())
 #   
 # print(queries)
 # print(month_posts)
-x_coord <- c(0,0,20,-20,10)
-y_coord <- c(20,-20,0,0,8)
+
+for (i in 1:length(palabras_corrupcion_assoc[,1])) {
+  print(strsplit(as.character(palabras_corrupcion_assoc[i,1]), "\\s"))
+}
 
 generate_assocs_summary <- function (type, keywords, pretty_name, queries, colors) {
   for (y in years) {
@@ -90,7 +92,7 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
       total_palabras_assoc <- list()
       for (i in 1:length(keywords)) {
         # TODO: adjust size de keywords de corrupcion
-        total_palabras_assoc[[as.character(keywords[i])]] <- list(id=paste("n", i, sep=""), size=5, x=sample(1:10, 1), y=sample(1:10, 1), label=as.character(pretty_name[i]), color=as.character(colors[i]))
+        total_palabras_assoc[[as.character(keywords[i])]] <- list(id=paste("n", i, sep=""), size=5, label=as.character(pretty_name[i]), color=as.character(colors[i]))
       }
       #print(total_palabras_assoc)
       current_id <- length(keywords) + 1
@@ -130,7 +132,7 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
               tdm <- DocumentTermMatrix(corpus, control = list(stopwords=stopwords, weighthing=weightTfIdf))
               # For each word in the knowledge base (palabras de corrupcion), find the associations of that word in particular
               
-              # TODO: falta "enriquecimiento ilicito" (hacer intersect?)
+              
               associations <- findAssocs(tdm, as.character(keywords[q]), c(0.0))
               #print(associations)
               all_assocs <- c(all_assocs, associations)
@@ -145,11 +147,11 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
                   if (names(associations[[as.character(keywords[q])]])[j] %in% total_palabras_assoc && !(is.na(names(associations[[as.character(keywords[q])]])[j]))) {
                     #print("Found an already existing word")
                     temporary_obj <- total_palabras_assoc[[names(associations[[as.character(keywords[q])]])[j]]] 
-                    total_palabras_assoc[[names(associations[[as.character(keywords[q])]])[j]]] <- list(id=temporary_obj$id, size=temporary_obj$size + associations[[as.character(keywords[q])]][j]*20, x=temporary_obj$x, y=temporary_obj$y, label=temporary_obj$label, color=temporary_obj$color)
+                    total_palabras_assoc[[names(associations[[as.character(keywords[q])]])[j]]] <- list(id=temporary_obj$id, size=temporary_obj$size + associations[[as.character(keywords[q])]][j]*20, label=temporary_obj$label, color=temporary_obj$color)
                     
                   } else if (!is.na(names(associations[[as.character(keywords[q])]])[j])) { # Else, it's a new word (new node)
                     #print("Adding new word")
-                    total_palabras_assoc[[names(associations[[as.character(keywords[q])]])[j]]] <- list(id=paste("n", current_id, sep=""), size=associations[[as.character(keywords[q])]][j]*20, x=0, y=0, label=names(associations[[as.character(keywords[q])]])[j])
+                    total_palabras_assoc[[names(associations[[as.character(keywords[q])]])[j]]] <- list(id=paste("n", current_id, sep=""), size=associations[[as.character(keywords[q])]][j]*20, label=names(associations[[as.character(keywords[q])]])[j])
                     current_id <- current_id + 1
                   }
                 }
@@ -168,7 +170,7 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
                 if (length(names(all_assocs[[as.character(keywords[i])]])[j]) > 0) {
                   source_obj <- total_palabras_assoc[[as.character(keywords[i])]]
                   target_obj <- total_palabras_assoc[[names(all_assocs[[as.character(keywords[i])]])[j]]] 
-                  total_palabras_assoc[[names(all_assocs[[as.character(keywords[i])]])[j]]] <- list(id=target_obj$id, size=target_obj$size, x=source_obj$x+x_coord[j], y=source_obj$y+y_coord[j], label=target_obj$label)
+                  total_palabras_assoc[[names(all_assocs[[as.character(keywords[i])]])[j]]] <- list(id=target_obj$id, size=target_obj$size, label=target_obj$label)
                   id <- paste(as.character(keywords[i]), "_", names(all_assocs[[as.character(keywords[i])]])[j], sep="")
                   edges[[id]] <- list(id=id, source=source_obj$id, target=target_obj$id)
                   #edges <- c(edges, id=list(id=id, source=source_obj$id, target=target_obj$id))
@@ -182,9 +184,11 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
           for (n in total_palabras_assoc) {
             #print(n)
             if (!(is.null(n[["color"]]))) {
-              finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '","x": ', n$x, ', "y": ', n$y, ', "size": ', n$size, ', "color": "', n$color, '"}', sep="")
+              #finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '","x": ', n$x, ', "y": ', n$y, ', "size": ', n$size, ', "color": "', n$color, '"}', sep="")
+              finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, ', "color": "', n$color, '"}', sep="")
             } else {
-              finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '","x": ', n$x, ', "y": ', n$y, ', "size": ', n$size, '}', sep="")
+              #finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '","x": ', n$x, ', "y": ', n$y, ', "size": ', n$size, '}', sep="")
+              finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, '}', sep="")
             }
             if (cont < length(total_palabras_assoc)) {
               finalJsonStr <- paste(finalJsonStr, ",", sep="")
@@ -194,7 +198,7 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
           finalJsonStr <- paste(finalJsonStr, '], "edges": [')
           cont <- 1
           for (e in edges) {
-            finalJsonStr <- paste(finalJsonStr, '{"id": "', e$id, '","source": "', e$source, '","target": "', e$target, '"}', sep="")
+            finalJsonStr <- paste(finalJsonStr, '{"id": "', e$id, '","from": "', e$source, '","to": "', e$target, '"}', sep="")
             if (cont < length(edges)) {
               finalJsonStr <- paste(finalJsonStr, ",", sep="")
             }
