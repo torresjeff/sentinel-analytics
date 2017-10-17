@@ -180,21 +180,26 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
           
           cont <- 1
           finalJsonStr <- '{"nodes": ['
+          nodes <- c()
           for (n in total_palabras_assoc) {
             #print(n)
-            if (!(is.na(n[["id"]])) && !(is.null(n[["id"]])) && !(n[["id"]] == "")) {
+            if (!(is.null(n[["id"]]))) {
               #finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '","x": ', n$x, ', "y": ', n$y, ', "size": ', n$size, ', "color": "', n$color, '"}', sep="")
               if (!(is.null(n[["color"]]))) {
-                finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, ', "color": "', n$color, '"}', sep="")
+                #finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, ', "color": "', n$color, '"}', sep="")
+                nodes <- c(nodes, paste('{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, ', "color": "', n$color, '"}', sep=""))
               } else {
-                finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, '}', sep="")
+                #finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, '}', sep="")
+                nodes <- c(nodes, paste('{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, '}', sep=""))
               }
             }
-            if (cont < length(total_palabras_assoc)) {
-              finalJsonStr <- paste(finalJsonStr, ",", sep="")
-            }
+            # if (cont < length(total_palabras_assoc)) {
+            #   finalJsonStr <- paste(finalJsonStr, ",", sep="")
+            # }
             cont <- cont + 1
           }
+          finalJsonStr <- paste(finalJsonStr, paste(unlist(nodes), collapse=','))
+          
           finalJsonStr <- paste(finalJsonStr, '], "edges": [')
           cont <- 1
           for (e in edges) {
