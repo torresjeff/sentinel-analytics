@@ -65,6 +65,8 @@ class Facebook:
         self.reactions = self.db.reactions
         self.comments = self.db.comments
         self.results = self.db.results
+        self.assocs = self.db.assocs
+        self.descriptive = self.db.descriptive
     
     def get_comments_for(self, entity, match_exact=False, opts=Options.ALL):
         regex = {}
@@ -171,12 +173,39 @@ class Facebook:
         return None
 
     
-    def generate_regex_query(self, attr=[], values=[]):
+    def generate_regex_query(self, attr=[], values=[], whole_sentence=True):
         query = {'$or': []}
         for a in attr:
             for v in values:
-                query['$or'].append({a: {"$regex": ".*" + v + ".*", '$options': 'i'}})
-        return {'$and': [query, {'whole_sentence': {'$exists': False}}]}
+                q = {}
+                q[a] = {"$regex": ".*" + v + ".*", '$options': 'i'}
+                query['$or'].append(q)
+
+        if whole_sentence:
+            return {'$and': [query, {'whole_sentence': {'$exists': False}}]}
+        else:
+            return query
+    
+    def generate_regex_query_for_date(self, year, month, attr=[], values=[], whole_sentence=True, wrapped=False):
+        query = {'$or': []}
+        for a in attr:
+            if wrapped is not True:
+                for v in values:
+                    q = {}
+                    q[a] = {"$regex": ".*" + v + ".*", '$options': 'i'}
+                    query['$or'].append(q)
+            else:
+                for s in values['synonyms']:
+                    q = {}
+                    q[a] = {"$regex": ".*" + s['word'] + ".*", '$options': 'i'}
+                    query['$or'].append(q)
+
+
+        if whole_sentence:
+            return {'$and': [query, {'whole_sentence': {'$exists': False}, "year": year, "month": month}]}
+        else:
+            return {'$and': [query, {"year": year, "month": month}]}
+    
     
     def query(self, collection, query):
         if collection == 'posts':
@@ -187,8 +216,43 @@ class Facebook:
             return list(self.reactions.find(query))
         elif collection == 'results':
             return list(self.results.find(query))
+        elif collection == 'assocs':
+            return list(self.assocs.find(query))
+        elif collection == 'descriptive':
+            return list(self.descriptive.find(query))
         else:
             return None
+        
+    def count(self, collection, query):
+        if collection == 'posts':
+            return self.posts.find(query).count()
+        elif collection == 'comments':
+            return self.comments.find(query).count()
+        elif collection == 'reactions':
+            return self.reactions.find(query).count()
+        elif collection == 'results':
+            return self.results.find(query).count()
+        elif collection == 'assocs':
+            return self.assocs.find(query).count()
+        elif collection == 'descriptive':
+            return self.descriptive.find(query).count()
+        else:
+            return None
+        
+    def insert(self, collection, doc):
+        if collection == 'posts':
+            self.posts.insert_one(doc)
+        elif collection == 'comments':
+            self.comments.insert_one(doc)
+        elif collection == 'reactions':
+            self.reactions.insert_one(doc)
+        elif collection == 'results':
+            self.results.insert_one(doc)
+        elif collection == 'assocs':
+            self.assocs.insert_one(doc)
+        elif collection == 'descriptive':
+            self.descriptive.insert_one(doc)
+
         
     def update_all(self, collection, docs, upsert=True):
         if collection == 'posts':
@@ -245,7 +309,7 @@ if __name__ == '__main__':
     query_comments_partidos = fb.generate_regex_query(['message'], partidos_politicos)
 
 
-    
+    #print(query_posts_palabras)
     res = fb.query('posts', query_posts_palabras)
     print(res)
 
