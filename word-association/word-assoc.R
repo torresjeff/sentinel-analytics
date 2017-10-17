@@ -182,12 +182,13 @@ generate_assocs_summary <- function (type, keywords, pretty_name, queries, color
           finalJsonStr <- '{"nodes": ['
           for (n in total_palabras_assoc) {
             #print(n)
-            if (!(is.null(n[["color"]]))) {
+            if (!(is.na(n[["id"]])) && !(is.null(n[["id"]])) && !(n[["id"]] == "")) {
               #finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '","x": ', n$x, ', "y": ', n$y, ', "size": ', n$size, ', "color": "', n$color, '"}', sep="")
-              finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, ', "color": "', n$color, '"}', sep="")
-            } else {
-              #finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '","x": ', n$x, ', "y": ', n$y, ', "size": ', n$size, '}', sep="")
-              finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, '}', sep="")
+              if (!(is.null(n[["color"]]))) {
+                finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, ', "color": "', n$color, '"}', sep="")
+              } else {
+                finalJsonStr <- paste(finalJsonStr, '{"id": "', n$id, '","label": "', n$label, '", "size": ', n$size, '}', sep="")
+              }
             }
             if (cont < length(total_palabras_assoc)) {
               finalJsonStr <- paste(finalJsonStr, ",", sep="")

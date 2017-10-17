@@ -28,6 +28,7 @@ yolanda ruiz,true,Yolanda Ruiz,yolanda,yolanda ruiz,#009933
 jose manuel acevedo,true,José Manuel Acevedo,acevedo,jose manuel acevedo,#009933
 darcy quinn,true,Darcy Quinn,quinn,darcy quinn,#009933
 maria isabel rueda,true,María Isabel Rueda,rueda,maria isabel rueda,#009933
+congresistas,true,Congresistas,congresistas,congresistas,#009933
 vladdo,true,'Vladdo',vladdo,vladdo,#009933
 daniel samper,true,Daniel Samper,samper,daniel samper ospina,#009933
 alvaro uribe,true,Álvaro Uribe,uribe,alvaro uribe velez,#009933
