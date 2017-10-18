@@ -67,6 +67,7 @@ class Facebook:
         self.results = self.db.results
         self.assocs = self.db.assocs
         self.descriptive = self.db.descriptive
+        self.sesgo = self.db.sesgo
     
     def get_comments_for(self, entity, match_exact=False, opts=Options.ALL):
         regex = {}
@@ -200,7 +201,6 @@ class Facebook:
                     q[a] = {"$regex": ".*" + s['word'] + ".*", '$options': 'i'}
                     query['$or'].append(q)
 
-
         if whole_sentence:
             return {'$and': [query, {'whole_sentence': {'$exists': False}, "year": year, "month": month}]}
         else:
@@ -220,6 +220,8 @@ class Facebook:
             return list(self.assocs.find(query))
         elif collection == 'descriptive':
             return list(self.descriptive.find(query))
+        elif collection == 'sesgo':
+            return list(self.sesgo.find(query))
         else:
             return None
         
@@ -236,6 +238,8 @@ class Facebook:
             return self.assocs.find(query).count()
         elif collection == 'descriptive':
             return self.descriptive.find(query).count()
+        elif collection == 'sesgo':
+            return self.sesgo.find(query).count()
         else:
             return None
         
@@ -252,6 +256,8 @@ class Facebook:
             self.assocs.insert_one(doc)
         elif collection == 'descriptive':
             self.descriptive.insert_one(doc)
+        elif collection == 'sesgo':
+            self.sesgo.insert_one(doc)
 
         
     def update_all(self, collection, docs, upsert=True):
