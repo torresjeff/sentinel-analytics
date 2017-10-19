@@ -49,3 +49,10 @@ if __name__ == '__main__':
             print(now.year, now.month, "already has activity_count summary")
         now -= relativedelta(months=1)
 
+    # TODO: hacer word cloud de las palabras mas mencionadas en comentarios de noticias de un personaje especifico
+    # ej: en las noticias sobre claudia lopez, las palabras que mas se encuentran en los comentarios son "liberal", "verde", etc.
+    # TODO: total de likes que tiene la pagina del lider (en caso de que tenga pagina de fb)
+    # TODO: total de reacciones que ha recibido en su pagina el lider (todos los posts del lider) - en caso de que tenga página
+    # TODO: de cuales temas habla más el lider en su pagina (en caso de que tenga pagina)
+    # TODO: grafico de cantidad de posts sobre el personaje que se esta viendo
+    # TODO: actividad del lider (cuantas publicaciones ha hecho en su pagina) - en caso de que tenga pagina

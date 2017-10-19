@@ -15,3 +15,5 @@ sac[a-z]+ tajad[a-z]+,false,corrupcion,'Sacar tajada'
 il[íìi]cit,false,corrupcion,Ilícito
 desfalc,false,corrupcion,Desfalco
 mermela,false,corrupcion,Mermelada
+coimas?,false,corrupcion,Coimas
+peculados?,false,corrupcion,Peculado
