@@ -56,3 +56,5 @@ if __name__ == '__main__':
     # TODO: de cuales temas habla más el lider en su pagina (en caso de que tenga pagina)
     # TODO: grafico de cantidad de posts sobre el personaje que se esta viendo
     # TODO: actividad del lider (cuantas publicaciones ha hecho en su pagina) - en caso de que tenga pagina
+    # TODO: mostrar un map(?) de cuales regiones se publican mas sobre corrupcion
+    # TODO: mostrar un map(?) de cuales regiones son mas AFECTADAS por corrupcion. Esto sería el gráfico, pero buscando municipios/departamentos/pais en vez de cualquier palabra asociada
