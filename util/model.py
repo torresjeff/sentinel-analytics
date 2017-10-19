@@ -174,13 +174,19 @@ class Facebook:
         return None
 
     
-    def generate_regex_query(self, attr=[], values=[], whole_sentence=True):
+    def generate_regex_query(self, attr=[], values=[], whole_sentence=True, wrapped=False):
         query = {'$or': []}
         for a in attr:
-            for v in values:
-                q = {}
-                q[a] = {"$regex": ".*" + v + ".*", '$options': 'i'}
-                query['$or'].append(q)
+            if wrapped is not True:
+                for v in values:
+                    q = {}
+                    q[a] = {"$regex": ".*" + v + ".*", '$options': 'i'}
+                    query['$or'].append(q)
+            else:
+                for s in values['synonyms']:
+                    q = {}
+                    q[a] = {"$regex": ".*" + s['word'] + ".*", '$options': 'i'}
+                    query['$or'].append(q)
 
         if whole_sentence:
             return {'$and': [query, {'whole_sentence': {'$exists': False}}]}

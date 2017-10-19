@@ -3,6 +3,8 @@ corruptos,true,Corruptos,corruptos,corruptos,#ec5148
 soborno,true,Soborno,soborno,soborno,#ec5148
 extorsion,true,Extorsión,extorsion,extorsion,#ec5148
 robo,true,Robo,robo,robo,#ec5148
+coimas,true,Coimas,coimas,coimas,#ec5148
+peculado,true,Peculado,peculado,peculado,#ec5148
 hurto,true,Hurto,hurto,hurto,#ec5148
 cohecho,true,Cohecho,cohecho,cohecho,#ec5148
 ilegalidad,true,Ilegalidad,ilegalidad,ilegalidad,#ec5148
