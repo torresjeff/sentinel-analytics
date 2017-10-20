@@ -219,7 +219,8 @@ def write_comments_to_file(comments_set):
         for c in comments:
             csvwriter.writerow([c.comment['_id'], c.comment['message'], c.comment['like_count'], c.comment['polarity'], c.comment['created_time']])
         
-def batch_analyze(knowledge_base, collection, attributes=[]):
+def batch_analyze(fb, knowledge_base, analyzer, collection, attributes=[]):
+    now = datetime.datetime.now()
     while now.year >= 2016:
         print(now.year, now.month)
         for name, value in knowledge_base.items():
@@ -293,7 +294,6 @@ if __name__ == '__main__':
     kb = KnowledgeBase()
     analyzer = SentimentAnalysis()
     analyzer.load_list(type_file_enum.polarity, options.file, options.sep)
-    now = datetime.datetime.now()
 
     palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
     #print("Palabras corrupcion", palabras_corrupcion)
@@ -306,7 +306,7 @@ if __name__ == '__main__':
     partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
     #print("Partidos", partidos_politicos)
 
-    batch_analyze(lideres_opinion, collection="comments", attributes=['message'])
+    batch_analyze(fb, lideres_opinion, analyzer, collection="comments", attributes=['message'])
     
     
 
