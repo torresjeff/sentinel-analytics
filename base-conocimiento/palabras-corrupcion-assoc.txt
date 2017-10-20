@@ -76,10 +76,21 @@ Secretar[íìi]a de Transparencia,false,Secretaría de Transparencia,transparenc
 sic,true,SIC,sic,sic,#cc00cc
 Superintendencia de Industria y Comercio,false,Superintendencia de Industria y Comercio,industria,superintendencia de industria y comercio,#cc00cc
 policia nacional,true,Policía Nacional,policia,policia nacional,#cc00cc
-Congreso de la Rep[úùu]blica,false,Congreso de la República,congreso,congreso de la republica,#cc00cc
+congreso,true,Congreso,congreso,congreso republica,#cc00cc
 superintendencia financiera,true,Superintendencia Financiera,financiera,superintendencia financiera,#cc00cc
 supersociedades,true,Supersociedades,supersociedades,supersociedades,#cc00cc
 fiscalia,true,Fiscalía,fiscalia,fiscalia,#cc00cc
 procuraduria,true,Procuraduría,procuraduria,procuraduria,#cc00cc
 contraloria,true,Contraloría,contraloria,contraloria,#cc00cc
 consejo nacional electoral,true,Consejo Nacional Electoral,electoral,consejo nacional electoral,#cc00cc
+iglesia catolica,true,Iglesia Católica,catolica,iglesia catolica,#cc00cc
+fuerzas armadas,true,Fuerzas Armadas,armadas,fuerzas armadas,#cc00cc
+iglesia cristiana,true,Iglesias Cristianas,cristiana,iglesia cristiana,#cc00cc
+iglesia evangelica,true,Iglesias Evangélicas,evangelica,iglesia evangelica,#cc00cc
+gobierno nacional,true,Gobierno Nacional,gobierno,gobierno nacional,#cc00cc
+uact,true,UACT,uact,uact,#cc00cc
+sistema de justicia,false,Sistema de Justicia,justicia,sistema de justicia,#cc00cc
+elecciones,true,Elecciones,elecciones,elecciones,#cc00cc
+alcaldia,true,Alcaldía,alcaldia,alcaldia,#cc00cc
+sindicatos,true,Sindicatos,sindicatos,sindicatos,#cc00cc
+partidos politicos,true,Partidos Políticos,politicos,partidos politicos,#cc00cc

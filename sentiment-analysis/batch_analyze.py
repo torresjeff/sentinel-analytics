@@ -309,6 +309,7 @@ if __name__ == '__main__':
     batch_analyze(fb, lideres_opinion, analyzer, collection="comments", attributes=['message'])
     
     
+    
 
 
     """

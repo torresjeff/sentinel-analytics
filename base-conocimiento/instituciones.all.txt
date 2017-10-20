@@ -10,6 +10,7 @@ SIC,true,sic,SIC
 Superintendencia de Industria y Comercio,false,sic,SIC
 Polic[íìi]a Nacional,false,policia-nacional,Policía Nacional
 Congreso de la Rep[úùu]blica,false,congreso,Congreso de la República
+Congreso,false,congreso,Congreso de la República
 Superintendencia Financiera,false,superintendencia-financiera,Superintendencia Financiera
 Supersociedades,false,supersociedades,Supersociedades
 Superintendencia de Sociedades,false,supersociedades,Supersociedades
@@ -18,3 +19,13 @@ Procuradur[íìi]a,false,procuraduria,Procuraduría
 Contralor[íìi]a,false,contraloria,Contraloría
 Consejo Nacional Electoral,false,cne,Consejo Nacional Electoral
 CNE,true,cne,Consejo Nacional Electoral
+Iglesias? Cat[óòo]licas?,false,iglesia-catolica,Iglesia Católica
+Fuerzas? Armadas?,false,fuerzas-armadas,Fuerzas Armadas
+Iglesias? Cristianas? Evang[éèe]licas?,false,iglesias-evangelicas,Iglesias Cristianas Evangélicas
+Gobierno Nacional,false,gobierno-nacional,Gobierno Nacional
+UACT,true,uact,UACT
+Sistema de Justicia,false,sistema-justicia,Sistema de Justicia
+Elecci[óòo]n(es)?,false,elecciones,Elecciones
+Alcald[íìi]a,false,alcaldia,Alcaldía
+Sindicatos?,false,sindicatos,Sindicatos
+Partidos? Pol[ìíi]tico?s,false,partidos-politicos,Partidos Políticos
