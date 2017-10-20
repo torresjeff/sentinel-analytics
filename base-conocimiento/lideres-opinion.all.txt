@@ -14,3 +14,5 @@ Daniel Samper,false,daniel-samper,Daniel Samper
 Salud Hern[áàa]ndez,false,salud-hernandez,Salud Hernández
 Felipe Zuleta Lleras,false,felipe-zuleta-lleras,Felipe Zuleta Lleras
 Matador,false,matador,'Matador'
+[Áàa]lvaro Uribe,false,alvaro-uribe,Álvaro Uribe
+Juan Manuel Santos,false,santos,Juan Manuel Santos

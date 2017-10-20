@@ -1,5 +1,6 @@
 Claudia L[óòo]pez,false,claudia-lopez,Claudia López
 Daniel Samper,false,daniel-samper,Daniel Samper
+Juan Manuel Santos,false,santos,Juan Manuel Santos
 Matador,false,matador,'Matador'
 [Áàa]lvaro Uribe,false,alvaro-uribe,Álvaro Uribe
 Uribe,false,alvaro-uribe, Álvaro Uribe

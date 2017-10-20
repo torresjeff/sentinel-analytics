@@ -68,6 +68,7 @@ class Facebook:
         self.assocs = self.db.assocs
         self.descriptive = self.db.descriptive
         self.sesgo = self.db.sesgo
+        self.sentiment = self.db.sentiment
     
     def get_comments_for(self, entity, match_exact=False, opts=Options.ALL):
         regex = {}
@@ -228,6 +229,8 @@ class Facebook:
             return list(self.descriptive.find(query))
         elif collection == 'sesgo':
             return list(self.sesgo.find(query))
+        elif collection == 'sentiment':
+            return list(self.sentiment.find(query))
         else:
             return None
         
@@ -246,6 +249,8 @@ class Facebook:
             return self.descriptive.find(query).count()
         elif collection == 'sesgo':
             return self.sesgo.find(query).count()
+        elif collection == 'sentiment':
+            return self.sentiment.find(query).count()
         else:
             return None
         
@@ -264,6 +269,8 @@ class Facebook:
             self.descriptive.insert_one(doc)
         elif collection == 'sesgo':
             self.sesgo.insert_one(doc)
+        elif collection == 'sentiment':
+            self.sentiment.insert_one(doc)
 
         
     def update_all(self, collection, docs, upsert=True):

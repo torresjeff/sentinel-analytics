@@ -1,5 +1,10 @@
 #!/usr/bin/python3
-
+import sys, os
+home = os.environ.get('HOME')
+lib_dir = home + '/workspace/analytics/util'
+sys.path.append(lib_dir)
+from model import Facebook
+from knowledge_base import KnowledgeBase
 from polarity import type_file_enum
 from polarity import process_list as SentimentAnalysis
 from optparse import OptionParser
@@ -7,6 +12,7 @@ from enum import Enum
 import pymongo
 import csv
 import datetime
+from dateutil.relativedelta import relativedelta
 
 client = pymongo.MongoClient("localhost", 27017)
 db = client.facebook # use the facebook database (automatically created if it doesn't exist)
@@ -53,22 +59,6 @@ class Reaction:
     
     def __hash__(self):
         return hash(self.reaction['_id'])
-    
-
-def read_knowledge_base(file):
-    words = []
-    with open(file, newline='') as csvfile:
-        reader = csv.reader(csvfile)
-        words = {}
-        for row in reader:
-            if row[2] not in words:
-                words[row[2]] = {'synonyms': [], 'friendly_name': ''}
-            words[row[2]]['synonyms'].append({'word': row[0], 'match_exact': True if row[1] == 'true' else False})
-            # TODO: esto está overriding el concepto de 'corrupción' (knowledge base de corrupcion)
-            # solo está quedando la ultima palabra que coja de la base de corrupcion como friendly name
-            words[row[2]]['friendly_name'] = row[3]
-    #print(words['corrupcion'])
-    return words
 
 class Options(Enum):
     ALL = 1
@@ -228,6 +218,69 @@ def write_comments_to_file(comments_set):
         csvwriter = csv.writer(csvfile, delimiter=',')
         for c in comments:
             csvwriter.writerow([c.comment['_id'], c.comment['message'], c.comment['like_count'], c.comment['polarity'], c.comment['created_time']])
+        
+def batch_analyze(knowledge_base, collection, attributes=[]):
+    while now.year >= 2016:
+        print(now.year, now.month)
+        for name, value in knowledge_base.items():
+            res = fb.query('sentiment', {"year": now.year, "month": now.month, "lider": name})
+            if res is None:
+                print("res is None")
+            
+            elif len(res) == 0:
+                query_lideres = fb.generate_regex_query_for_date(now.year, now.month, ['message'], value,
+                        whole_sentence=False, wrapped=True)
+                query_lideres['$and'].append({'polarity': {'$exists': False}})
+                results = fb.query(collection, query_lideres)
+                print("first query results for", name, "=>" , len(results))
+
+                obj_insert = {
+                    "year": now.year,
+                    "month": now.month,
+                    "friendly_name": value['friendly_name'],
+                    "type": collection,
+                    "entity": "lideres",
+                    "lider": name,
+                    "negative": 0,
+                    "positive": 0,
+                    "neutral": 0,
+                    "top_comments": [],
+                    "like_counts": []
+                }
+                for r in results:
+                    polarity = analyzer.process_text(r['message'])['Polarity']
+                    r['polarity'] = polarity
+
+                fb.update_all(collection, results)
+                query_lideres['$and'] = query_lideres['$and'][:-1]
+                query_lideres['$and'].append({'polarity': {'$exists': True}})
+                results = fb.query(collection, query_lideres)
+
+                comments = []
+
+                for r in results:
+                    if r['polarity'] < 0: obj_insert['negative'] += 1
+                    elif r['polarity'] > 0: obj_insert['positive'] += 1
+                    elif r['polarity'] == 0: obj_insert['neutral'] += 1
+                    comments.append(Comment(r))
+
+                print("second query results for", name, "=>" , len(results))
+
+                comments.sort(reverse=True)
+                for i, c in enumerate(comments):
+                    if i <= 4:
+                        obj_insert['top_comments'].append(c.comment['message'])
+                        obj_insert['like_counts'].append(c.comment['like_count'])
+                    else:
+                        break
+                #print(results)
+                obj_insert['total_comentarios'] = obj_insert['negative'] + obj_insert['positive'] + obj_insert['neutral']
+                fb.insert('sentiment', obj_insert)
+                #print (obj_insert)
+            
+            elif len(res) > 0:
+                print("lider", name, "already has sentiment summary for", now.year, now.month)
+        now -= relativedelta(months=1)
 
 if __name__ == '__main__':
 
@@ -236,88 +289,25 @@ if __name__ == '__main__':
     parser.add_option("-s", "--separator", dest="sep", default="\t", help="specify separator for the file with the lexicons")
     (options, args) = parser.parse_args()
 
+    fb = Facebook()
+    kb = KnowledgeBase()
     analyzer = SentimentAnalysis()
     analyzer.load_list(type_file_enum.polarity, options.file, options.sep)
+    now = datetime.datetime.now()
 
-    palabras_corrupcion = read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
+    palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
     #print("Palabras corrupcion", palabras_corrupcion)
-    casos_corrupcion = read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
+    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
     #print("Casos corrupcion", casos_corrupcion)
-    instituciones = read_knowledge_base('../base-conocimiento/instituciones.txt')
+    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
     #print("Instituciones", instituciones)
-    lideres_opinion = read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
     #print("Lideres", lideres_opinion)
-    partidos_politicos = read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
+    partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
     #print("Partidos", partidos_politicos)
 
-    for name, value in lideres_opinion.items():
-        for s in value['synonyms']:
-            # TODO: instead of looking for each synonym, simply put them all in an $or inside the query
-            # Look for comments
-            print(s)
-            if 'comments' not in lideres_opinion[name]:
-                lideres_opinion[name]['comments'] = set()
-            
-            # TODO: instead of looking for comments "with" and "without" polarity, look for them all and then filter them
-            # Buscar comentarios que todavia no se han summarized 
-            comments_set = get_comments_for(s['word'], s['match_exact'], Options.NO_POLARITY)
-            #print("comments_set =>", comments_set)
-            lideres_opinion[name]['comments'] |= comments_set
-            
-        #for c in lideres_opinion[name]['comments']:
-            #print("Comments with NO POLARITY of", name, "=>", c.comment)
-        update_comments_with_polarity(lideres_opinion[name]['comments'])
-
-    # Write summary of comments to 'results' collection
-    for name, value in lideres_opinion.items():
-        comments_set = set()
-        for s in value['synonyms']:
-            comments_set |= get_comments_for(s['word'], s['match_exact'], Options.POLARITY_AND_NOT_STORED)
-
-        for c in comments_set:
-            print("comments with polarity and not stored =>", c.comment)
-            updated_comment = dict(c.comment)
-            updated_comment['stored'] = True
-            date = c.comment['created_time'].strftime('%Y-%m-%d')
-
-            res = results.find_one({'_id': name})
-            if res is None:
-                res = {
-                    '_id': name,
-                    'comment_summary': {},
-                    'post_summary': {},
-                    'reaction_summary': {},
-                    'friendly_name': value['friendly_name'],
-                    'type': 'lider' # TODO: cambiar por parametro en una funcion con el tipo de entidad que es
-                }
-            
-            if not date in res['comment_summary']:
-                res['comment_summary'][date] = {}
-                res['comment_summary'][date]['positive'] = 0
-                res['comment_summary'][date]['negative'] = 0
-                res['comment_summary'][date]['neutral'] = 0
-                res['comment_summary'][date]['comment_most_likes'] = ''
-                res['comment_summary'][date]['like_count'] = 0
-                res['comment_summary'][date]['comment_id'] = ''
-
-
-            if c.comment['like_count'] > res['comment_summary'][date]['like_count'] or res['comment_summary'][date]['comment_id'] == '':
-                res['comment_summary'][date]['comment_most_likes'] = c.comment['message']
-                res['comment_summary'][date]['like_count'] = c.comment['like_count']
-                res['comment_summary'][date]['comment_id'] = c.comment['_id']
-            
-            #print("updated_comment =>", updated_comment)
-
-            if updated_comment['polarity'] > 0:
-                res['comment_summary'][date]['positive'] += 1
-            elif updated_comment['polarity'] < 0:
-                res['comment_summary'][date]['negative'] += 1
-            else:
-                res['comment_summary'][date]['neutral'] += 1
-
-            print("res =>", res)
-            results.update({'_id': name}, res, upsert=True)
-            comments.update(c.comment, updated_comment)
+    batch_analyze(lideres_opinion, collection="comments", attributes=['message'])
+    
     
 
 
