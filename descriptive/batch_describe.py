@@ -10,27 +10,21 @@ import datetime
 import pymongo
 from dateutil.relativedelta import relativedelta
 
-if __name__ == '__main__':
-    fb = Facebook()
-    kb = KnowledgeBase()
-    counter = Counter()
+def activity_count(fb, counter, knowledge_base, entity):
     now = datetime.datetime.now()
-    
-    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
-    
     while now.year >= 2016:
         # TODO: parametrizar "entity"
-        res = fb.query('descriptive', {"month": now.month, "year": now.year, "type": "activity_count", "entity": "casos"})
+        res = fb.query('descriptive', {"month": now.month, "year": now.year, "type": "activity_count", "entity": entity})
         print(now.year, now.month)
         if res is None:
             print("res is None")
         elif len(res) == 0: # No reaction count for that month/year, so create a new summary for that month/year
             obj_insert = {}
-            obj_insert['casos'] = []
-            for k, v in casos_corrupcion.items():
-                query_casos_corrupcion = fb.generate_regex_query_for_date(now.year, now.month, ['message', 'name', 'description'], v,
+            obj_insert[entity] = []
+            for k, v in knowledge_base.items():
+                query_knowledge_base = fb.generate_regex_query_for_date(now.year, now.month, ['message', 'name', 'description'], v,
                     whole_sentence=False, wrapped=True)
-                posts = fb.query('posts', query_casos_corrupcion)
+                posts = fb.query('posts', query_knowledge_base)
                 query_comments = fb.generate_regex_query_for_date(now.year, now.month, ['message'], v,
                     whole_sentence=False, wrapped=True)
                 results = counter.get_activity_count(posts)
@@ -38,16 +32,28 @@ if __name__ == '__main__':
                 results['friendly_name'] = v['friendly_name']
                 results['post_count'] = len(posts)
                 results['comment_count'] = fb.count('comments', query_comments)
-                obj_insert['casos'].append(results)
+                obj_insert[entity].append(results)
 
             obj_insert['month'] = now.month
             obj_insert['year'] = now.year
             obj_insert['type'] = "activity_count"
-            obj_insert['entity'] = "casos"
+            obj_insert['entity'] = entity
             fb.insert('descriptive', obj_insert)
         elif len(res) > 0:
             print(now.year, now.month, "already has activity_count summary")
         now -= relativedelta(months=1)
+
+
+if __name__ == '__main__':
+    fb = Facebook()
+    kb = KnowledgeBase()
+    counter = Counter()
+    
+    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
+    
+    activity_count(fb, counter, casos_corrupcion, "casos")
+    activity_count(fb, counter, lideres_opinion, "lideres")
 
     # TODO: hacer word cloud de las palabras mas mencionadas en comentarios de noticias de un personaje especifico
     # ej: en las noticias sobre claudia lopez, las palabras que mas se encuentran en los comentarios son "liberal", "verde", etc.

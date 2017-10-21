@@ -1,3 +1,4 @@
+Polic[íìi]a Nacional,false,policia-nacional,Policía Nacional
 Transparencia por Colombia,false,transparencia-colombia,Transparencia por Colombia
 Centro de Estrategias Anticorrupci[óòo]n,false,cea,Centro de Estrategias Anticorrupción
 Centro de Estrategias Anticorrupci[óòo]n CEA,false,cea,Centro de Estrategias Anticorrupción
@@ -8,12 +9,11 @@ ONU,true,onu,ONU
 Secretar[íìi]a de Transparencia,false,secretaria-transparencia,Secretaría de Transparencia
 SIC,true,sic,SIC
 Superintendencia de Industria y Comercio,false,sic,SIC
-Polic[íìi]a Nacional,false,policia-nacional,Policía Nacional
 Congreso de la Rep[úùu]blica,false,congreso,Congreso de la República
 Superintendencia Financiera,false,superintendencia-financiera,Superintendencia Financiera
 Supersociedades,false,supersociedades,Supersociedades
 Superintendencia de Sociedades,false,supersociedades,Supersociedades
-Fiscal[íìi]a,false,fiscalia,Fiscaalía
+Fiscal[íìi]a,false,fiscalia,Fiscalía
 Procuradur[íìi]a,false,procuraduria,Procuraduría
 Contralor[íìi]a,false,contraloria,Contraloría
 Consejo Nacional Electoral,false,cne,Consejo Nacional Electoral

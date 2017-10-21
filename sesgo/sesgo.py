@@ -75,33 +75,22 @@ class Sesgo:
                 res.append("normal")
         return res
 
-    
-    
-
-if __name__ == '__main__':
-    fb = Facebook()
-    sesgo = Sesgo()
-    kb = KnowledgeBase()
+def calcular_sesgo(fb, sesgo, knowledge_base, entity, config_file):
     now = datetime.datetime.now()
-
     jsonConfig = None
     # TODO: cambiar a config.medios.json
-    with open(home + '/workspace/facebook-scraper-py/config.json') as data_file:
+    with open(home + '/workspace/facebook-scraper-py/' + config_file) as data_file:
         jsonConfig = json.load(data_file)
     
     if jsonConfig is not None:
         pages = jsonConfig['pages']
         #print(pages)
-        palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
-        casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
-        instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
-        lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
-        partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
+        
 
         # TODO: hacer un summary global (desde enero de 2016, para comparar que tanto hablan los medios de corrupcion/partidos/lideres durante ese periodo de tiempo)
         #while now.year >= 2017 and now.month >= 10:
         #print(now.year, now.month)
-        res = fb.query('sesgo', {"entity": "casos", "year": now.year, "month": now.month})
+        res = fb.query('sesgo', {"entity": entity, "year": now.year, "month": now.month})
         if res is None:
             print("res is None")
         elif len(res) == 0: # No reaction count for that month/year, so create a new summary for that month/year
@@ -110,10 +99,10 @@ if __name__ == '__main__':
             for p in pages:
                 page_id = str(p['id'])
                 obj_insert['medios'][page_id] = {}
-            for k, v in casos_corrupcion.items():
-                query_casos_corrupcion = fb.generate_regex_query(['message', 'name', 'description'], v,
+            for k, v in knowledge_base.items():
+                query_knowledge_base = fb.generate_regex_query(['message', 'name', 'description'], v,
                     whole_sentence=False, wrapped=True)
-                posts = fb.query('posts', query_casos_corrupcion)
+                posts = fb.query('posts', query_knowledge_base)
                 # TODO: parametrizar 'casos'
                 for p in pages:
                     page_id = str(p['id'])
@@ -121,7 +110,7 @@ if __name__ == '__main__':
 
             obj_insert['month'] = now.month
             obj_insert['year'] = now.year
-            obj_insert['entity'] = "casos"
+            obj_insert['entity'] = entity
             #print("obj_insert['medios']", obj_insert['medios'])
             outliers = sesgo.detect_outliers(obj_insert['medios'])
             # k = case name
@@ -137,3 +126,21 @@ if __name__ == '__main__':
         elif len(res) > 0:
             print(now.year, now.month, "already has sesgo summary")
         now -= relativedelta(months=1)
+    
+
+if __name__ == '__main__':
+    fb = Facebook()
+    sesgo = Sesgo()
+    kb = KnowledgeBase()
+
+    palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
+    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
+    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
+    partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
+
+    calcular_sesgo(fb, sesgo, casos_corrupcion, "casos", "config.json")
+    calcular_sesgo(fb, sesgo, instituciones, "instituciones", "config.json")
+    calcular_sesgo(fb, sesgo, lideres_opinion, "lideres", "config.json")
+    calcular_sesgo(fb, sesgo, partidos_politicos, "partidos", "config.json")
+
