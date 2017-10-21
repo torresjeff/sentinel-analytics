@@ -139,8 +139,9 @@ if __name__ == '__main__':
     lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
     partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
 
-    calcular_sesgo(fb, sesgo, casos_corrupcion, "casos", "config.json")
-    calcular_sesgo(fb, sesgo, instituciones, "instituciones", "config.json")
-    calcular_sesgo(fb, sesgo, lideres_opinion, "lideres", "config.json")
-    calcular_sesgo(fb, sesgo, partidos_politicos, "partidos", "config.json")
+    calcular_sesgo(fb, sesgo, palabras_corrupcion, "corrupcion", "config.medios.json")
+    calcular_sesgo(fb, sesgo, casos_corrupcion, "casos", "config.medios.json")
+    calcular_sesgo(fb, sesgo, instituciones, "instituciones", "config.medios.json")
+    calcular_sesgo(fb, sesgo, lideres_opinion, "lideres", "config.medios.json")
+    calcular_sesgo(fb, sesgo, partidos_politicos, "partidos", "config.medios.json")
 
