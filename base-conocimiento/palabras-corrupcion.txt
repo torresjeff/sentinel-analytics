@@ -1,6 +1,6 @@
 soborn,false,corrupcion,Soborno
 extorsi[óòo]n,false,corrupcion,Extorsión
-rob[aáàeéèoóò][mnrs]?,false,corrupcion,Robo
+rob[aáàeéèoóò][dmnrs]?(os|on)?,true,corrupcion,Robo
 hurt[aeéèoóò],false,corrupcion,Hurto
 cohech,false,corrupcion,Cohecho
 ilegal,false,corrupcion,Ilegalidad
@@ -15,3 +15,8 @@ sac[a-z]+ tajad[a-z]+,false,corrupcion,'Sacar tajada'
 il[íìi]cit,false,corrupcion,Ilícito
 desfalc,false,corrupcion,Desfalco
 mermela,false,corrupcion,Mermelada
+coimas?,false,corrupcion,Coimas
+peculados?,false,corrupcion,Peculado
+concusi[óòo]n,false,corrupcion,Concusión
+abuso de autoridad,false,corrupcion,Abuso de autoridad
+prevaricato,false,corrupcion,Prevaricato
