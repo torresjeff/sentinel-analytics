@@ -1,18 +1,18 @@
-Mar[íìi]a Jimena Duz[áàa]n,false,maria-duzan,María Jimena Duzán
-Daniel Coronell,false,daniel-coronell,Daniel Coronell
-Jorge Robledo,false,jorge-robledo,Jorge Robledo
-Juanita Le[óòo]n,false,juanita-leon,Juanita león
-Claudia L[óòo]pez,false,claudia-lopez,Claudia López
-Gonzalo Guill[éèe]n,false,gonzalo-guillen,Gonzalo Guillén
-Antonio Caballero,false,antonio-caballero,Antonio Caballero
-Yolanda Ruiz,false,yolanda-ruiz,Yolanda Ruiz
-Jos[éèe] Manuel Acevedo,false,jose-manuel-acevedo,José Manuel Acevedo
-Darcy Quinn,false,darcy-quinn,Darcy Quinn
-Mar[íìi]a Isabel Rueda,false,maria-isabel-rueda,María Isabel Rueda
-Vladdo,false,vladdo,'Vladdo'
-Daniel Samper,false,daniel-samper,Daniel Samper
-Salud Hern[áàa]ndez,false,salud-hernandez,Salud Hernández
-Felipe Zuleta Lleras,false,felipe-zuleta-lleras,Felipe Zuleta Lleras
-Matador,false,matador,'Matador'
-[Áàa]lvaro Uribe,false,alvaro-uribe,Álvaro Uribe
-Juan Manuel Santos,false,santos,Juan Manuel Santos
+Claudia L[óòo]pez,false,claudia-lopez,Claudia López,158190387560587
+Mar[íìi]a Jimena Duz[áàa]n,false,maria-duzan,María Jimena Duzán,326097117566387
+Daniel Coronell,false,daniel-coronell,Daniel Coronell,
+Jorge Robledo,false,jorge-robledo,Jorge Robledo,91251840313,
+Juanita Le[óòo]n,false,juanita-leon,Juanita león,
+Gonzalo Guill[éèe]n,false,gonzalo-guillen,Gonzalo Guillén,
+Antonio Caballero,false,antonio-caballero,Antonio Caballero,
+Yolanda Ruiz,false,yolanda-ruiz,Yolanda Ruiz,112844398901531
+Jos[éèe] Manuel Acevedo,false,jose-manuel-acevedo,José Manuel Acevedo,485059051594792
+Darcy Quinn,false,darcy-quinn,Darcy Quinn,
+Mar[íìi]a Isabel Rueda,false,maria-isabel-rueda,María Isabel Rueda,
+Vladdo,false,vladdo,'Vladdo',1046580858702732
+Daniel Samper,false,daniel-samper,Daniel Samper,1479801618944626
+Salud Hern[áàa]ndez,false,salud-hernandez,Salud Hernández,1614881202125316
+Felipe Zuleta Lleras,false,felipe-zuleta-lleras,Felipe Zuleta Lleras,
+Matador,false,matador,'Matador',1500134680243350
+[Áàa]lvaro Uribe,false,alvaro-uribe,Álvaro Uribe,45242794557
+Juan Manuel Santos,false,santos,Juan Manuel Santos,330825443903
