@@ -1,6 +1,8 @@
 #!/usr/bin/python3
+import sys, os
+home = os.environ.get('HOME')
 import csv
-
+import json
 class KnowledgeBase:
     #def __init__(self):
 
@@ -26,3 +28,11 @@ class KnowledgeBase:
                 palabras.append(v['word'])
         
         return palabras
+    
+    def read_config(self, file):
+        jsonConfig = None
+        # TODO: cambiar a config.medios.json
+        with open(home + '/workspace/facebook-scraper-py/' + file) as data_file:
+            jsonConfig = json.load(data_file)
+        
+        return jsonConfig

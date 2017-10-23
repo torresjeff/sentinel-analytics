@@ -224,7 +224,7 @@ def calcular_sesgo_corrupcion(fb, sesgo, knowledge_base_corrupcion, knowledge_ba
                 queries_corrupcion = fb.generate_regex_query(['message', 'name', 'description'], v,
                     whole_sentence=False, wrapped=True)
             
-            if casos_corrupcion:
+            if casos_matter:
                 for k, v in knowledge_base_casos.items():
                     queries_corrupcion['$or'].append(fb.generate_regex_query(['message', 'name', 'description'], v,
                         whole_sentence=False, wrapped=True))
@@ -237,7 +237,7 @@ def calcular_sesgo_corrupcion(fb, sesgo, knowledge_base_corrupcion, knowledge_ba
             #print("--------------------------------")
             for p in pages:
                 page_id = str(p['id'])
-                obj_insert['medios'][page_id][k] = sesgo.sesgo_publicaciones(posts, page_id)
+                obj_insert['medios'][page_id]["corrupcion"] = sesgo.sesgo_publicaciones(posts, page_id)
 
             obj_insert['month'] = now.month
             obj_insert['year'] = now.year
@@ -270,7 +270,7 @@ if __name__ == '__main__':
     lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
     partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
 
-    calcular_sesgo_corrupcion(fb, sesgo, palabras_corrupcion, {}, "corrupcion", "config.medios.json", casos_matter=False)
+    calcular_sesgo(fb, sesgo, palabras_corrupcion, "corrupcion", "config.medios.json")
     calcular_sesgo(fb, sesgo, casos_corrupcion, "casos", "config.medios.json")
     calcular_sesgo(fb, sesgo, instituciones, "instituciones", "config.medios.json")
     calcular_sesgo(fb, sesgo, lideres_opinion, "lideres", "config.medios.json")

@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import sys, os
+home = os.environ.get('HOME')
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
@@ -9,6 +11,7 @@ import pymongo
 import datetime
 from model import Facebook
 from knowledge_base import KnowledgeBase
+import json
 
 class Stemmer:
     def __init__(self):
@@ -134,6 +137,21 @@ if __name__ == '__main__':
     comments_queries.append(fb.generate_regex_query(['message'], lideres_opinion))
     comments_queries.append(fb.generate_regex_query(['message'], partidos_politicos))
 
+
+    with open(home + '/workspace/facebook-scraper-py/config.lideres.json') as data_file:
+        jsonConfig = json.load(data_file)
+    
+    lideres_queries = []
+    if jsonConfig is not None:
+        for p in jsonConfig['pages']:        
+            lideres_queries.append({"_id": {"$regex": str(p['id']) + "_[0-9]+"}})
+    
+    print("Stemming leader posts...", datetime.datetime.now())
+    for q in lideres_queries:
+        stemmer.stem_array('posts', q)
+    print("Finished stemming leader posts...", datetime.datetime.now())
+
+
     print("Stemming posts...", datetime.datetime.now())
     for q in posts_queries:
         stemmer.stem_array('posts', q)
@@ -143,6 +161,9 @@ if __name__ == '__main__':
     for q in comments_queries:
         stemmer.stem_array('comments', q)
     print("Finished stemming comments...", datetime.datetime.now())
+
+
+
     """
     # Queries para posts
     query_posts_palabras = fb.generate_regex_query(['message', 'name', 'description'], palabras_corrupcion)
