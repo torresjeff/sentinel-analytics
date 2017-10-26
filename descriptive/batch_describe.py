@@ -84,7 +84,9 @@ if __name__ == '__main__':
     counter = Counter()
     
     casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
-    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.all.txt')
+    partidos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
+    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
     
     # TODO: uncomment
     activity_count(fb, counter, casos_corrupcion, "casos")
@@ -94,10 +96,10 @@ if __name__ == '__main__':
 
     for p in config['pages']:
         post_count(fb, counter, casos_corrupcion, "casos", str(p['id']))
-        #post_count(fb, counter, lideres_opinion, "lideres", str(p['id']))
-        #post_count(fb, counter, instituciones, "instituciones", str(p['id']))
+        post_count(fb, counter, lideres_opinion, "lideres", str(p['id']))
+        post_count(fb, counter, partidos, "partidos", str(p['id']))
+        post_count(fb, counter, instituciones, "instituciones", str(p['id']))
     
     # TODO: total de reacciones que ha recibido en su pagina el lider (todos los posts del lider) - en caso de que tenga página
-    # TODO: de cuales temas habla más el lider en su pagina (en caso de que tenga pagina)
     # TODO: actividad del lider (cuantas publicaciones ha hecho en su pagina) - en caso de que tenga pagina
     # TODO: mostrar un map(?) de cuales regiones se publican mas sobre corrupcion

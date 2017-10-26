@@ -267,7 +267,7 @@ if __name__ == '__main__':
     palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
     casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
     instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
-    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.all.txt')
     partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
 
     calcular_sesgo(fb, sesgo, palabras_corrupcion, "corrupcion", "config.medios.json")
