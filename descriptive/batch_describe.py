@@ -78,6 +78,30 @@ def post_count(fb, counter, knowledge_base, entity, page_id):
             print(now.year, now.month, "already has activity_count summary")
         now -= relativedelta(months=1)
 
+def reaction_count(fb, counter, entity, page_id):
+    now = datetime.datetime.now()
+    res = fb.query('descriptive', {"month": now.month, "year": now.year, "type": "reaction_count", "entity": entity, "page": page_id})
+    print(now.year, now.month)
+    if res is None:
+        print("res is None")
+    elif len(res) == 0: # No reaction count for that month/year, so create a new summary for that month/year
+        obj_insert = {
+            "page": page_id,
+            "entity": entity,
+            "month": now.month,
+            "year": now.year,
+            "type": "reaction_count"
+        }
+
+        posts = fb.query('posts', {"_id": {"$regex": page_id + "_[0-9]+"}})
+        results = counter.get_activity_count(posts)
+        obj_insert['reactions'] = results
+        fb.insert('descriptive', obj_insert)
+    elif len(res) > 0:
+        print(now.year, now.month, "already has activity_count summary")
+    now -= relativedelta(months=1)
+    
+
 if __name__ == '__main__':
     fb = Facebook()
     kb = KnowledgeBase()
@@ -93,12 +117,16 @@ if __name__ == '__main__':
     activity_count(fb, counter, lideres_opinion, "lideres")
 
     config = kb.read_config('config.medios.json')
+    configLideres = kb.read_config('config.lideres.json')
 
     for p in config['pages']:
         post_count(fb, counter, casos_corrupcion, "casos", str(p['id']))
         post_count(fb, counter, lideres_opinion, "lideres", str(p['id']))
         post_count(fb, counter, partidos, "partidos", str(p['id']))
         post_count(fb, counter, instituciones, "instituciones", str(p['id']))
+    
+    for p in configLideres['pages']:
+        reaction_count(fb, counter, "lideres", str(p['id']))
     
     # TODO: total de reacciones que ha recibido en su pagina el lider (todos los posts del lider) - en caso de que tenga página
     # TODO: actividad del lider (cuantas publicaciones ha hecho en su pagina) - en caso de que tenga pagina

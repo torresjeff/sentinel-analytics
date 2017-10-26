@@ -301,7 +301,7 @@ if __name__ == '__main__':
     #print("Casos corrupcion", casos_corrupcion)
     instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
     #print("Instituciones", instituciones)
-    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.all.txt')
     #print("Lideres", lideres_opinion)
     partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
     #print("Partidos", partidos_politicos)
