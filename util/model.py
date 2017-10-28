@@ -186,7 +186,7 @@ class Facebook:
             else:
                 for s in values['synonyms']:
                     q = {}
-                    if s['match_exact'] is True: q[a] = {"$regex": ".\\b*" + s['word'] + "\\b.*", '$options': 'i'}
+                    if s['match_exact'] is True: q[a] = {"$regex": ".*\\b" + s['word'] + "\\b.*", '$options': 'i'}
                     else: q[a] = {"$regex": ".*" + s['word'] + ".*", '$options': 'i'}
                     query['$or'].append(q)
 
