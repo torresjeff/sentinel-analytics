@@ -10,6 +10,7 @@ Secretar[íìi]a de Transparencia,false,secretaria-transparencia,Secretaría de 
 SIC,true,sic,SIC
 Superintendencia de Industria y Comercio,false,sic,SIC
 Congreso,false,congreso,Congreso de la República
+Congreso de la Rep[úùu]blica,false,congreso,Congreso de la República
 Superintendencia Financiera,false,superintendencia-financiera,Superintendencia Financiera
 Supersociedades,false,supersociedades,Supersociedades
 Superintendencia de Sociedades,false,supersociedades,Supersociedades

@@ -299,15 +299,15 @@ if __name__ == '__main__':
 
 
 
-    palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
+    palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.all.txt')
     #print("Palabras corrupcion", palabras_corrupcion)
-    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
+    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.all.txt')
     #print("Casos corrupcion", casos_corrupcion)
-    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
+    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.all.txt')
     #print("Instituciones", instituciones)
-    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.all.txt')
     #print("Lideres", lideres_opinion)
-    partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
+    partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.all.txt')
 
     palabras_corrupcion = kb.get_words_as_list(palabras_corrupcion)
     casos_corrupcion = kb.get_words_as_list(casos_corrupcion)

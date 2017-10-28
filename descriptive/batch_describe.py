@@ -163,12 +163,14 @@ if __name__ == '__main__':
     kb = KnowledgeBase()
     counter = Counter()
     
-    corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
-    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
+    corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.all.txt')
+    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.all.txt')
     lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.all.txt')
-    partidos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
-    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
+    partidos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.all.txt')
+    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.all.txt')
     
+    activity_count(fb, counter, instituciones, "instituciones")
+    activity_count(fb, counter, partidos, "partidos")
     activity_count(fb, counter, casos_corrupcion, "casos")
     activity_count(fb, counter, lideres_opinion, "lideres")
 

@@ -37,7 +37,7 @@ if __name__ == '__main__':
     fb = Facebook()
     kb = KnowledgeBase()
     
-    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.all.txt')
     config_file = "config.lideres.json"
     
     with open(home + '/workspace/facebook-scraper-py/' + config_file) as data_file:

@@ -108,11 +108,11 @@ if __name__ == '__main__':
     print(classified_text)
     """
     # Leer base de conocimiento
-    palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.txt')
-    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.txt')
-    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.txt')
-    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.txt')
-    partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.txt')
+    palabras_corrupcion = kb.read_knowledge_base('../base-conocimiento/palabras-corrupcion.all.txt')
+    casos_corrupcion = kb.read_knowledge_base('../base-conocimiento/casos-corrupcion.all.txt')
+    instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.all.txt')
+    lideres_opinion = kb.read_knowledge_base('../base-conocimiento/lideres-opinion.all.txt')
+    partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.all.txt')
 
     # Convertir de dictionary a list con las regular expressions
     palabras_corrupcion = kb.get_words_as_list(palabras_corrupcion)
