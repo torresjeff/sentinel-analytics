@@ -47,26 +47,26 @@ polo,true,Polo,polo,polo,#FFFE4F
 opcion ciudadana,true,Opción Ciudadana,ciudadana,opcion ciudadana,#FFFE4F
 partido verde,true,Partido Verde,verde,partido verde,#FFFE4F
 partido mira,true,Partido Mira,mira,partido mira,#FFFE4F
-odebrecht,true,Odebrecht,odebrecht,odebrecht,#ff6600
-reficar,true,Reficar,reficar,reficar,#ff6600
-llanopetrol,true,Llanopetrol,llanopetrol,llanopetrol,#ff6600
-marketmedios,true,Marketmedios,marketmedios,marketmedios,#ff6600
-FF\\. MM\\. de Cartagena,false,FF. MM. de Cartagena,cartagena,ff mm de cartagena,#ff6600
-fiscal anticorrupcion,true,Fiscal Anticorrupción,anticorrupcion,fiscal anticorrupcion,#ff6600
-luis gustavo moreno,true,Fiscal Anticorrupción,gustavo,luis gustavo moreno,#ff6600
-Secretar[íìi]a de Seguridad de Medell[íìi]n,false,Secretaría de Seguridad de Medellín,secretaria,secretaria de seguridad de medellin,#ff6600
-saludcoop,true,Saludcoop,saludcoop,saludcoop,#ff6600
-Cartel de la Hemofilia,false,Cartel de la Hemofilia,hemofilia,cartel de la hemofilia,#ff6600
-fondo premium,true,Fondo Premium,premium,fondo premium,#ff6600
-interbolsa,true,Interbolsa,interbolsa,interbolsa,#ff6600
-inassa,true,Inassa,inassa,inassa,#ff6600
-Triple A,false,Triple A,triple,triple a,#ff6600
-estraval,true,Estraval,estraval,estraval,#ff6600
-Juegos Nacionales del Meta,false,Juegos Nacionales del Meta,meta,juegos nacionales del meta,#ff6600
-juegos nacionales,true,Juegos Nacionales,nacionales,juegos nacionales,#ff6600
-Juegos Bolivarianos 2017,false,Juegos Bolivarianos 2017,bolivarianos,juegos bolivarianos,#ff6600
-Cartel de la Seguridad Privada,false,Cartel de la Seguridad Privada,privada,cartel de la seguridad privada,#ff6600
-juegos deportivos nacionales,true,Juegos Deportivos Nacionales,deportivos,juegos deportivos nacionales,#ff6600
+odebrecht,true,Odebrecht,odebrecht,odebrecht,#E91E63
+reficar,true,Reficar,reficar,reficar,#E91E63
+llanopetrol,true,Llanopetrol,llanopetrol,llanopetrol,#E91E63
+marketmedios,true,Marketmedios,marketmedios,marketmedios,#E91E63
+FF\\. MM\\. de Cartagena,false,FF. MM. de Cartagena,cartagena,ff mm de cartagena,#E91E63
+fiscal anticorrupcion,true,Fiscal Anticorrupción,anticorrupcion,fiscal anticorrupcion,#E91E63
+luis gustavo moreno,true,Fiscal Anticorrupción,gustavo,luis gustavo moreno,#E91E63
+Secretar[íìi]a de Seguridad de Medell[íìi]n,false,Secretaría de Seguridad de Medellín,secretaria,secretaria de seguridad de medellin,#E91E63
+saludcoop,true,Saludcoop,saludcoop,saludcoop,#E91E63
+Cartel de la Hemofilia,false,Cartel de la Hemofilia,hemofilia,cartel de la hemofilia,#E91E63
+fondo premium,true,Fondo Premium,premium,fondo premium,#E91E63
+interbolsa,true,Interbolsa,interbolsa,interbolsa,#E91E63
+inassa,true,Inassa,inassa,inassa,#E91E63
+Triple A,false,Triple A,triple,triple a,#E91E63
+estraval,true,Estraval,estraval,estraval,#E91E63
+Juegos Nacionales del Meta,false,Juegos Nacionales del Meta,meta,juegos nacionales del meta,#E91E63
+juegos nacionales,true,Juegos Nacionales,nacionales,juegos nacionales,#E91E63
+Juegos Bolivarianos 2017,false,Juegos Bolivarianos 2017,bolivarianos,juegos bolivarianos,#E91E63
+Cartel de la Seguridad Privada,false,Cartel de la Seguridad Privada,privada,cartel de la seguridad privada,#E91E63
+juegos deportivos nacionales,true,Juegos Deportivos Nacionales,deportivos,juegos deportivos nacionales,#E91E63
 Transparencia por Colombia,false,Transparencia por Colombia,colombia,transparencia por colombia,#cc00cc
 Centro de Estrategias Anticorrupci[óòo]n,false,Centro de Estrategias Anticorrupción,estrategias,centro de estrategias anticorrupcion,#cc00cc
 pacto global,true,Pacto Global,pacto,pacto global,#cc00cc
