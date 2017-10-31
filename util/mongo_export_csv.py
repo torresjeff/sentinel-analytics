@@ -12,8 +12,8 @@ comments = db.comments
 
 if __name__ == '__main__':
     all_posts = list(posts.find({}))
-    all_reactions = list(reactions.find({}))
     all_comments = list(comments.find({}))
+    #all_reactions = list(reactions.find({}))
     
     
     with open('posts.csv', 'w', newline='') as csvfile:
@@ -41,19 +41,4 @@ if __name__ == '__main__':
             if 'message' in p: row[1] = p['message']
             if 'like_count' in p: row[2] = p['like_count']
             if 'created_time' in p: row[3] = p['created_time']
-            csvwriter.writerow(row)
-        
-    with open('reactions.csv', 'w', newline='') as csvfile:
-        csvwriter = csv.writer(csvfile, delimiter=',')
-        csvwriter.writerow(['_id', 'sad', 'wow', 'love', 'like', 'angry', 'haha'])
-        for p in all_reactions:
-            # [0] = _id, [1] = sad, [2] = wow, [3] = love, [4] = like, [5] = angry, [6] = haha
-            row = ['', '', '', '', '', '', '']
-            if '_id' in p: row[0] = p['_id']
-            if 'sad' in p: row[1] = p['sad']
-            if 'wow' in p: row[2] = p['wow']
-            if 'love' in p: row[3] = p['love']
-            if 'like' in p: row[4] = p['like']
-            if 'angry' in p: row[5] = p['angry']
-            if 'haha' in p: row[6] = p['haha']
             csvwriter.writerow(row)

@@ -306,9 +306,9 @@ if __name__ == '__main__':
     partidos_politicos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.all.txt')
     #print("Partidos", partidos_politicos)
 
-    #batch_analyze(fb, lideres_opinion, analyzer, "lider", "lideres", collection="comments", attributes=['message'])
-    batch_analyze(fb, instituciones, analyzer, "institucion", "instituciones", collection="comments", attributes=['message'])
-    batch_analyze(fb, partidos_politicos, analyzer, "partido", "partidos", collection="comments", attributes=['message'])
+    batch_analyze(fb, lideres_opinion, analyzer, "lider", "lideres", collection="comments", attributes=['message'])
+    #batch_analyze(fb, instituciones, analyzer, "institucion", "instituciones", collection="comments", attributes=['message'])
+    #batch_analyze(fb, partidos_politicos, analyzer, "partido", "partidos", collection="comments", attributes=['message'])
     
     
     
