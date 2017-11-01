@@ -1,5 +1,6 @@
 palabras_buscar,no_stopwords,pretty_name,keyword,full_no_accents,color
 corruptos,true,Corruptos,corruptos,corruptos,#ec5148
+corrupcion,true,Corrupción,corrupcion,corrupcion,#ec5148
 soborno,true,Soborno,soborno,soborno,#ec5148
 extorsion,true,Extorsión,extorsion,extorsion,#ec5148
 robo,true,Robo,robo,robo,#ec5148
