@@ -114,7 +114,6 @@ def generate_query_corrupcion(fb, knowledge_base_corrupcion, knowledge_base_caso
     return queries_corrupcion
 
 def comment_count_corrupcion(fb, knowledge_base_corrupcion, knowledge_base_casos, knowledge_base_lideres, entity):
-    
     now = datetime.datetime.now()
     res = fb.query('descriptive', {"month": now.month, "year": now.year, "type": "comment_count", "entity": entity})
     print(now.year, now.month)
@@ -153,7 +152,7 @@ def comment_count_corrupcion(fb, knowledge_base_corrupcion, knowledge_base_casos
             for c in comments_noticias_corrupcion:
                 if pattern.search(c['message'], re.IGNORECASE):
                     obj_insert[entity][k]["comments"] += 1
-        
+            print("finished finding comments for", k)
         fb.insert('descriptive', obj_insert)
         print('inserted comment_count summary', now.year, now.month, "for page", entity)
     
