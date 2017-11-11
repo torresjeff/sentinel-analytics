@@ -15,7 +15,7 @@ import numpy as np
 # Requiere instalar python3-tk sudo apt-get install python3-tk
 from wordcloud import WordCloud
 
-def generate_word_cloud(fb, page_id):
+def generate_word_cloud(fb, page_id, stopwords=[]):
     now = datetime.datetime.now()
 
     print("generating word_cloud for", page_id)
@@ -24,7 +24,7 @@ def generate_word_cloud(fb, page_id):
     whole_text = ""
     for r in results:
         whole_text += r['whole_sentence']
-    wc = WordCloud(background_color=None, mode="RGBA", collocations=False, width=1920, height=800)
+    wc = WordCloud(background_color=None, mode="RGBA", collocations=False, width=1920, height=800, stopwords=stopwords)
     wc.generate(whole_text)
     img_path = path.join(home + "/workspace/sentinel/public/img/wordclouds/" + str(now.year) + "-" + str(now.month) + "-" + page_id + ".png")
     print(img_path)
@@ -45,5 +45,6 @@ if __name__ == '__main__':
     
     if jsonConfig is not None:
         for p in jsonConfig['pages']:
-            generate_word_cloud(fb, str(p['id']))
+            print("stopwords", p['stopwords'])
+            generate_word_cloud(fb, str(p['id']), stopwords=p['stopwords'])
 
