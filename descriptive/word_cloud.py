@@ -15,9 +15,11 @@ import numpy as np
 # Requiere instalar python3-tk sudo apt-get install python3-tk
 from wordcloud import WordCloud
 
+deafult_stopwords = ["post", "photos", "timeline", "added", "photo", "from", "www"]
+
 def generate_word_cloud(fb, page_id, stopwords=[]):
     now = datetime.datetime.now()
-
+    stopwords.extend(deafult_stopwords)
     print("generating word_cloud for", page_id)
     query = {"$and": [{"_id": {"$regex": page_id + "_[0-9]+"}}, {"whole_sentence": {"$exists": True}}]}
     results = fb.query("posts", query)
