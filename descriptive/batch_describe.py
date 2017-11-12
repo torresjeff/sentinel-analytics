@@ -155,7 +155,65 @@ def comment_count_corrupcion(fb, knowledge_base_corrupcion, knowledge_base_casos
             print("finished finding comments for", k)
         fb.insert('descriptive', obj_insert)
         print('inserted comment_count summary', now.year, now.month, "for page", entity)
-    
+
+
+def publicaciones_comentarios_populares(fb, knowledge_base, entity):
+    now = datetime.datetime.now()
+    now -= relativedelta(months=1)
+    while now.year >= 2016:
+        print(now.year, now.month)
+        #res = fb.query('descriptive', {"month": now.month, "year": now.year, "type": "popular", "entity": entity})
+        
+        for k, v in knowledge_base.items():
+            res = fb.query('descriptive', {"month": now.month, "year": now.year, "type": "popular", "entity": entity, "specific": k})
+            if res is None:
+                print("res is None")
+            
+            elif len(res) == 0: # No reaction count for that month/year, so create a new summary for that month/year
+                obj_insert = {
+                    "month": now.month,
+                    "year": now.year,
+                    "type": "popular",
+                    "entity": entity,
+                    "specific": k
+                }
+                
+                query_knowledge_base = fb.generate_regex_query_for_date(now.year, now.month, ['message', 'name', 'description'], v,
+                    whole_sentence=False, wrapped=True)
+                posts = fb.query('posts', query_knowledge_base)
+                most_popular_post = ""
+                most_popular_post_shares = -1
+
+                for p in posts:
+                    if 'shares' in p and p['shares'] > most_popular_post_shares:
+                        most_popular_post = ""
+                        if 'message' in p:
+                            most_popular_post += p['message']
+                        if 'name' in p:
+                            most_popular_post += p['name']
+                        if 'description' in p:
+                            most_popular_post += p['description']
+                        most_popular_post_shares = p['shares']
+
+                query_comments = fb.generate_regex_query_for_date(now.year, now.month, ['message'], v,
+                    whole_sentence=False, wrapped=True)
+                comments = fb.query('comments', query_comments)
+                most_popular_comment = ""
+                most_popular_comment_shares = -1
+
+                for c in comments:
+                    if 'like_count' in c and c['like_count'] > most_popular_comment_shares:
+                        most_popular_comment = ""
+                        if 'message' in c:
+                            most_popular_comment += c['message']
+                
+                obj_insert['most_popular_post'] = most_popular_post
+                obj_insert['most_popular_comment'] = most_popular_comment
+                print(now.year, now.month, "inserted populares for", k)
+                fb.insert('descriptive', obj_insert)
+            elif len(res) > 0:
+                print(now.year, now.month, "already has activity_count summary")
+        now -= relativedelta(months=1)
 
 if __name__ == '__main__':
     fb = Facebook()
@@ -168,24 +226,29 @@ if __name__ == '__main__':
     partidos = kb.read_knowledge_base('../base-conocimiento/partidos-politicos.all.txt')
     instituciones = kb.read_knowledge_base('../base-conocimiento/instituciones.all.txt')
     
-    activity_count(fb, counter, instituciones, "instituciones")
-    activity_count(fb, counter, partidos, "partidos")
-    activity_count(fb, counter, casos_corrupcion, "casos")
-    activity_count(fb, counter, lideres_opinion, "lideres")
+    # activity_count(fb, counter, instituciones, "instituciones")
+    # activity_count(fb, counter, partidos, "partidos")
+    # activity_count(fb, counter, casos_corrupcion, "casos")
+    # activity_count(fb, counter, lideres_opinion, "lideres")
+
+    publicaciones_comentarios_populares(fb, casos_corrupcion, "casos")
+    publicaciones_comentarios_populares(fb, lideres_opinion, "lideres")
+    publicaciones_comentarios_populares(fb, partidos, "partidos")
+    publicaciones_comentarios_populares(fb, instituciones, "instituciones")
 
     config = kb.read_config('config.medios.json')
     configLideres = kb.read_config('config.lideres.json')
 
-    for p in config['pages']:
-        post_count(fb, counter, casos_corrupcion, "casos", str(p['id']))
-        post_count(fb, counter, lideres_opinion, "lideres", str(p['id']))
-        post_count(fb, counter, partidos, "partidos", str(p['id']))
-        post_count(fb, counter, instituciones, "instituciones", str(p['id']))
+    # for p in config['pages']:
+    #     post_count(fb, counter, casos_corrupcion, "casos", str(p['id']))
+    #     post_count(fb, counter, lideres_opinion, "lideres", str(p['id']))
+    #     post_count(fb, counter, partidos, "partidos", str(p['id']))
+    #     post_count(fb, counter, instituciones, "instituciones", str(p['id']))
     
-    for p in configLideres['pages']:
-        reaction_count(fb, counter, "lideres", str(p['id']))
+    # for p in configLideres['pages']:
+    #     reaction_count(fb, counter, "lideres", str(p['id']))
     
-    comment_count_corrupcion(fb, corrupcion, casos_corrupcion, lideres_opinion, "lideres")
+    # comment_count_corrupcion(fb, corrupcion, casos_corrupcion, lideres_opinion, "lideres")
 
     # TODO: total de reacciones que ha recibido en su pagina el lider (todos los posts del lider) - en caso de que tenga página
     # TODO: actividad del lider (cuantas publicaciones ha hecho en su pagina) - en caso de que tenga pagina
